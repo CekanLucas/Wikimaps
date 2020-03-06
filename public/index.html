@@ -30,13 +30,13 @@
 
       </nav>
     </header>
-    <!--Google map API -->
-    <div id="map" style="width:100%;height:400px;"></div>
-    <script src="scripts/map.js"></script>
-    <!--End Google map API -->
-  <main style="margin: 1em;">
-    <h3>My Maps</h3>
-    <table class="table">
+    <main style="margin: 1em;">
+      <!--Google map API -->
+      <div id="map" style="width:100%;height:400px;"></div>
+      <script src="scripts/map.js"></script>
+      <!--End Google map API -->
+      <h3>My Maps</h3>
+      <table class="table">
       <thead>
         <tr>
           <th scope="col">Map</th>
@@ -46,33 +46,33 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
-            <td><a href=/urls/ url %></a></td>
+        <tr>
+          <td><a href=/urls/ url %></a></td>
             <td>
-              <form method="GET" action='/urls/<%= url %>'>
+              <form method="GET" action='/urls'>
                 <button class='btn btn-outline-info'>
                   Edit
                 </button>
               </form>
             </td>
             <td>
-              <form method="POST" action='/urls/<%= url %>/delete'>
+              <form method="POST" action='/urls/delete'>
                 <button class='btn btn-outline-danger'>
                   Delete
                 </button>
               </form>
             </td>
             <td>
-              <form method="POST" action='/urls/<%= url %>/delete'>
+              <form method="POST" action='/urls/delete'>
                 <button class='btn btn-outline-success'>
                   Favourite
                 </button>
               </form>
             </td>
           </tr>
-      </tbody>
-    </table>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
+        </tbody>
+      </table>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
   </main>
 
 
