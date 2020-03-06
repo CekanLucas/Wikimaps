@@ -1,9 +1,16 @@
 // See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: red;
 
-  h1 {
-    color: #244751;
-  }
 }
+
+header {
+  background-color: blue;
+}
+
+#map {
+  position: absolute;
+  background-color: red;
+}
+
