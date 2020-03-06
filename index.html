@@ -7,10 +7,10 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <title>MapWiki</title>
-</head>
+</head>Theming the navbar has never been easier thanks to the
 <body>
   <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-success">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <a class="navbar-brand" href="/urls">MapWiki</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,7 @@
           <th scope="col">Map</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
+          <th scope="col">Favourite</th>
         </tr>
       </thead>
       <tbody>
@@ -48,6 +49,13 @@
               <form method="POST" action='/urls/<%= url %>/delete'>
                 <button class='btn btn-outline-danger'>
                   Delete
+                </button>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action='/urls/<%= url %>/delete'>
+                <button class='btn btn-outline-success'>
+                  Favourite
                 </button>
               </form>
             </td>
