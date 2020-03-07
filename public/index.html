@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <script src="https://kit.fontawesome.com/90d60d73c6.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <!-- Bootstrap CSS -->
@@ -35,43 +36,24 @@
       <div id="map"></div>
       <script src="scripts/map.js"></script>
       <!--End Google map API -->
-      <h3>My Maps</h3>
-      <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Map</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Delete</th>
-          <th scope="col">Favourite</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href=/urls/ url %></a></td>
-            <td>
-              <form method="GET" action='/urls'>
-                <button class='btn btn-outline-info'>
-                  Edit
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST" action='/urls/delete'>
-                <button class='btn btn-outline-danger'>
-                  Delete
-                </button>
-              </form>
-            </td>
-            <td>
-              <form method="POST" action='/urls/delete'>
-                <button class='btn btn-outline-success'>
-                  Favourite
-                </button>
-              </form>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
+      <h3 class=h3.light>Below is example grid item Hover over element to see what it does</h3>
+      <div class=flex>
+
+        <article class=map-grid>
+          <h3 class=map-name title='view map'>map-name</h3>
+          <span class=user-handle title="go to user's maps">@user-email <i class="fas fa-atlas"></i></span><br>
+         <table class=map-options>
+          <td><a href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a><td></td>
+          <td><a href="http://" title='Delete Map'><i class="fas fa-times"></i></a><td></td>
+          <td><a href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a><td></td>
+          <td><a href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a><td></td>
+          <td><a href="http://" title='Edit Map'><i class="fas fa-edit"></i></a><td></td>
+        </table>
+        </article>
+
+
+      </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
   </main>
 

@@ -2,7 +2,7 @@
 
 body, h1, h2, .h3, h4, h5, h6 {
   background-color: transparent;
-  color: #fff;
+  color: #fff !important;
 }
 
 #map {
@@ -22,4 +22,61 @@ table, .table {
   color: white;
   text-align: center;
   border: none;
+}
+
+.flex {
+  padding: 0.1vh 0.1vw;
+  background: rgba($color: #FFF, $alpha: 0.5);
+  width: 100%;
+}
+
+
+/* FROM Tweeter */
+.map-grid {
+  background-color: #0AF;
+  background-image: url("https://www.transparenttextures.com/patterns/gplay.png");
+  color:whitesmoke;
+  padding: 1em;
+  padding-bottom: 0.1em;
+  border: 3px solid black;
+  border-radius: 15px;
+  margin: 1.5em;
+}
+
+.map-grid span.map-name {
+  font-weight: 700;
+  font-size:2.5em;
+  position: relative;
+  bottom: 0.25em;
+}
+.map-grid span.tweetHandle{
+  float:right;
+  font-weight: 700;
+}
+
+.map-options {
+  border-radius: 10px 5px;
+  background-color: #0AF;
+  color: whitesmoke;
+}
+section.map-grid a{
+  margin:0 3px;
+  padding:5px;
+  color:white;
+}
+article.map-grid a{
+  margin:0 3px;
+  padding:5px;
+  color:white;
+}
+
+/* Hover effects */
+.map-grid img:hover{
+  box-shadow:1px 0px 2px cyan, 0px 1px 2px cyan, -1px 0px 2px cyan, 0px -1px 2px cyan;
+}
+.map-grid *:hover{
+  text-shadow:1px 0px 2px cyan, 0px 1px 2px cyan, -1px 0px 2px cyan, 0px -1px 2px cyan;
+}
+.map-options  a:hover{
+  text-shadow:10px 0px 10px orange, 0px 1px 2px orange, -1px 0px 2px orange, 0px -1px 2px orange;
 }
