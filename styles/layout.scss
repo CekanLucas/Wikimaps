@@ -12,6 +12,14 @@ body {
   z-index: -1000;
 }
 
+#bg_map {
+  background-color: rgba(0, 0, 0, 150);
+  filter: invert(1);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
 main {
   position: relative;
+  height: 100vh;
 }
