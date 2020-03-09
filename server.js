@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+const cookie     = require('cookie');
+const {formHandling} = require('./public/scripts/formHandling');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -48,6 +50,22 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   res.render("index.html");
   res.redirect('/index.html')
+});
+
+app.post("/login", (req, res)=> {
+  const loginEmail = req.body.loginEmail;
+  const loginPass  = req.body.loginPass;
+
+  // check if user and password field is filled in
+  if(loginEmail === '' && loginPass === undefined){
+    res.status(403).send('Please fill out email field');
+    return;
+  }
+  if(loginEmail === undefined && loginPass === ''){
+    res.status(403).send('Please fill out password field');
+    return;
+  }
+  formHandling(req, res);
 });
 
 app.listen(PORT, () => {
