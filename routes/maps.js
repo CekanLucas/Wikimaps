@@ -12,7 +12,7 @@
 
     router.get('/', (req, res) => {
 
-      const getAllMaps = function(options, limit) {
+      const getAllMaps = function(limit) {
         // 1
         const queryParams = [];
         // 2
@@ -21,10 +21,10 @@
           WHERE true
           `;
 
-        if (options.user_id) {
-          queryParams.push(options.user_id);
-          queryString += `AND user_id = $${queryParams.length} `;
-        }
+        // if (options.user_id) {
+        //   queryParams.push(options.user_id);
+        //   queryString += `AND user_id = $${queryParams.length} `;
+        // }
 
         // 4
         queryParams.push(limit);
@@ -37,7 +37,7 @@
         return db.query(queryString, queryParams).then(res => res.rows);
       };
 
-      getAllMaps(1)
+      getAllMaps(10)
       .then(
         maps => {
           res.send({maps}).catch(err => {
