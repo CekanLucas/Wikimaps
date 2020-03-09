@@ -27,7 +27,9 @@ CREATE TABLE pointers (
   title VARCHAR(255) NOT NULL,
   description TEXT,
   image_url VARCHAR(255) NOT NULL,
-  address VARCHAR(255) NOT NULL
+  address VARCHAR(255) NOT NULL,
+  latitude DECIMAL NOT NULL,
+  longitude DECIMAL NOT NULL
   -- -- address details
   -- country VARCHAR(255) NOT NULL,
   -- street VARCHAR(255) NOT NULL,
