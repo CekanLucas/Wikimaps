@@ -10,15 +10,15 @@
   const router  = express.Router();
   module.exports = (db) => {
 
-    router.get('/test', (req, res) => {
+    router.get('/', (req, res) => {
 
       const getAllMaps = function(limit) {
         // 1
-        console.log('called')
+
         const queryParams = [];
         // 2
         let queryString = `
-          SELECT * FROM maps;
+          SELECT * FROM maps
           `;
 
         // if (options.user_id) {
