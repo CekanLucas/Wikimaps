@@ -32,7 +32,7 @@ nav {
   z-index: -1;
   border: 3px solid #fff;
   border-radius: 15px;
-  filter: invert(1) hue-rotate(random(360) + deg);
+  filter: invert(1) sepia(0.8) hue-rotate(random(360) + deg);
 }
 
 /* FROM Tweeter */
@@ -49,14 +49,14 @@ nav {
   text-shadow:1px 0px 2px cyan, 0px 1px 2px cyan, -1px 0px 2px cyan, 0px -1px 2px cyan;
 }
 
-.map-grid span.map-name {
+.map-grid h3.map-name {
   font-weight: 700;
-  font-size:2.5em;
-  position: relative;
-  bottom: 0.25em;
+  font-size:1.5em;
+  padding-left: 10rem;
 }
 .map-grid span.user-handle{
   margin: 1.5em 0;
+  padding-left: 10rem;
 }
 
 article.map-grid a{
@@ -67,6 +67,6 @@ article.map-grid a{
 }
 
 article.map-grid a[title='Favourite Map']{
-  padding-left: 1em;
+  padding-left: 10rem;
 }
 
