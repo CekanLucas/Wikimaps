@@ -27,13 +27,13 @@ CREATE TABLE pointers (
   title VARCHAR(255) NOT NULL,
   description TEXT,
   image_url VARCHAR(255) NOT NULL,
-
-  -- address details
-  country VARCHAR(255) NOT NULL,
-  street VARCHAR(255) NOT NULL,
-  city VARCHAR(255) NOT NULL,
-  province VARCHAR(255) NOT NULL,
-  post_code VARCHAR(255) NOT NULL
+  address VARCHAR(255) NOT NULL
+  -- -- address details
+  -- country VARCHAR(255) NOT NULL,
+  -- street VARCHAR(255) NOT NULL,
+  -- city VARCHAR(255) NOT NULL,
+  -- province VARCHAR(255) NOT NULL,
+  -- post_code VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE user_maps (

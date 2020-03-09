@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/urls">My Maps</a>
-          <a class="nav-item nav-link" href="/urls/new">Create New Map</a>
+          <a class="nav-item nav-link" href="/api/maps/new">Create New Map</a>
           <a class="nav-item nav-link" href="/api/maps">Browse Maps</a>
         </div>
       </div>
@@ -66,10 +66,18 @@
           <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
           <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
         </article>
-
+      </div>
+      <div id = maps>
 
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
+
+
+      <script src="scripts/network.js"></script>
+      <script src="scripts/views_manager.js"></script>
+      <script src="scripts/index.js"></script>
+
+      <script src="scripts/components/map_listings.js"></script>
   </main>
 
 
