@@ -10,15 +10,15 @@
   const router  = express.Router();
   module.exports = (db) => {
 
-    router.get('/', (req, res) => {
+    router.get('/test', (req, res) => {
 
       const getAllMaps = function(limit) {
         // 1
+        console.log('called')
         const queryParams = [];
         // 2
         let queryString = `
-          SELECT * FROM maps
-          WHERE true
+          SELECT * FROM maps;
           `;
 
         // if (options.user_id) {
@@ -82,45 +82,6 @@
     createNewMap(user_id, data.title,data.description,data.image_url,active);
     res.send(`<h1> OK</h1>`);
   });
-
-
-
-
-
-
-
-
-
-
-
-
-    // router.post('/new', (req, res) => {
-
-    //   const createNewMap = function(newMap) {
-    //     // 1
-    //     const queryParams = [];
-    //     // 2
-    //     let queryString = ` INSERT INTO maps (user_id, title, description, image_url, active) VALUES ($1,$2,$3,$4,$5) `;
-
-    //     //5
-    //     console.log(queryString, queryParams);
-    //     // 6
-    //     return db.query(queryString, [newMap.user_id, newMap.title, newMap.description, newMap.image_url, newMap.active]).then(res => res.rows);
-    //   };
-
-    //   createNewMap(map)
-    //   .then(
-    //     maps => {
-    //       res.send({maps}).catch(err => {
-    //       res.status(500).json({ error: err.message });
-    //       });
-    //     })
-    //   .catch(e => {
-    //     console.error(e);
-    //     res.send(e)
-    //   });
-
-    // });
     return router;
   };
 

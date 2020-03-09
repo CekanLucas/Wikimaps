@@ -29,7 +29,7 @@ nav {
   position: absolute;
   overflow: hidden;
   box-sizing: border-box;
-  z-index: -1;
+  z-index: 1;
   border: 3px solid #fff;
   border-radius: 15px;
   filter: invert(1) sepia(0.8) hue-rotate(random(360) + deg);
@@ -43,6 +43,11 @@ nav {
   margin: 1.5em;
   position: relative;
   text-align: left;
+}
+
+h3.map-name, span.user-handle, article.map-grid a{
+  position: relative;
+  z-index: 3;
 }
 
 .map-grid *:hover {
