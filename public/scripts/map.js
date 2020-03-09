@@ -58,4 +58,6 @@ $(document).ready(() => {
   }
   initMap(`map`);
   initMap(`map2`);
+  initMap(`map3`);
+  initMap(`map4`);
 })
