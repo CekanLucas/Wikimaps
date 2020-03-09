@@ -1,12 +1,13 @@
+$(document).ready(() => {
   // Initialize and add the map
-  function initMap() {
+  const initMap = (mapid) => {
     let image = '../images/Marker.png';
     let image2 = '../images/DanceMarker.png';
       // The location of DKcenter
       let DKcoor = {lat: -34.742750, lng: 138.660641};
       // The map, centered bit to the side of Dkcenter
       let map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 13, center: DKcoor});
+        document.getElementById(mapid), {zoom: 13, center: DKcoor});
       // The marker, positioned at dk center
       let marker = new google.maps.Marker({
       position: DKcoor,
@@ -55,3 +56,6 @@
       infowindow2.open(map, marker2);
     });
   }
+  initMap(`map`);
+  initMap(`map2`);
+})
