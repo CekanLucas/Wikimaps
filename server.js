@@ -51,6 +51,21 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+  console.log(res.redirect('/api/widgets'))
+
+  let query = `SELECT * FROM users;`;
+    console.log(query);
+   const users = db.query(query)
+      .then(data => {
+        const widgets = data.rows;
+        res.json({ widgets });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    console.log(users)
 });
 
 app.post("/login", (req, res)=> {
@@ -66,22 +81,7 @@ app.post("/login", (req, res)=> {
     res.status(403).send('Please fill out password field');
     return;
   }
-
-  let query = `SELECT * FROM users;`;
-    console.log(query);
-   db.query(query)
-      .then(data => {
-        console.log(data.rows)
-        const users = data.rows;
-        formHandling(req, res);
-        // res.json({ widgets });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-    console.log(users)
+  formHandling(req, res);
 });
 
 app.post("/register", (req, res)=> {
