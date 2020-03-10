@@ -1,4 +1,4 @@
-const db = require("../routes/maps");
+// const db = require("../routes/maps");
 
 $(document).ready(function() {
   console.log("ready!");
