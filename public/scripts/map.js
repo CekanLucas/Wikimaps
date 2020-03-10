@@ -1,25 +1,58 @@
+// global marker array
+window.markers = [];
+
 //helper function that generates new map marker on click event
 const placeMarker = function(location, map) {
   let marker = new google.maps.Marker({
     position: location,
     map: map,
-    draggable: true
+    draggable: true,
+    user_id: 1,
+    map_id: 1
+  });
+
+  window.markers.push([
+    marker.user_id,
+    marker.map_id,
+    marker.position.lat(),
+    marker.position.lng()
+  ]);
+  console.log(marker.position.lat());
+  console.log(marker.position.lng());
+  console.log(marker.map_id);
+  console.log(window.markers);
+
+  let infowindow = new google.maps.InfoWindow({
+    content: `<form id="marker-form" action="/api/maps/markers" method="POST">
+      <p>Create New Marker</p>
+      <div>
+        <input name="title" placeholder="Title" />
+      </div>
+
+      <div>
+        <input type="text" name="description" placeholder="Description" />
+      </div>
+
+      <div>
+        <input type="text" name="address" placeholder="Address" />
+      </div>
+
+      <div>
+        <input type="text" name="image_url" placeholder="Image Url" />
+      </div>
+      <div>
+        <button type="submit" href="/api/maps/new">Create</button>
+        <a id="login-form__cancel" href="/">Cancel</a>
+      </div>
+    </form>
+      `
+  });
+
+  marker.addListener("click", function() {
+    infowindow.open(map, marker);
   });
 };
 
-// const placeInfowindow = function(map, marker) {
-// let infowindow = new google.maps.InfoWindow({
-// content:
-//   '<div id="content">' +
-//   '<div id="siteNotice">' +
-//   "</div>" +
-//   '<h1 id="firstHeading" class="firstHeading">hello world</h1>' +
-//   '<div id="bodyContent">' +
-//   "<p><b>Hello World</b>" +
-//   "</div>" +
-//   "</div>"
-// });
-// };
 // let infowindow = new google.maps.InfoWindow({});
 
 // Initialize and add the map
@@ -28,7 +61,7 @@ window.initMap = mapid => {
   console.log(document.getElementById(mapid));
   mapMaker("map");
   mapMaker("map2");
-  mapMaker("map3");
+
   // mapMaker("map4");
 };
 
@@ -45,9 +78,6 @@ const mapMaker = function(mapid) {
     console.log("click detected");
     placeMarker(event.latLng, map);
   });
-  // marker.addListener("click", function() {
-  //   infowindow.open(map, marker);
-  // });
 };
 
 // google.maps.event.addDomListener(window, "load", initMap);
