@@ -29,7 +29,7 @@ window.initMap = mapid => {
   mapMaker("map");
   mapMaker("map2");
   mapMaker("map3");
-  mapMaker("map4");
+  // mapMaker("map4");
 };
 
 // helper function that generates user maps.
@@ -50,5 +50,4 @@ const mapMaker = function(mapid) {
   // });
 };
 
-module.exports = {mapMaker, placeMarker}
 // google.maps.event.addDomListener(window, "load", initMap);

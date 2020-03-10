@@ -3,11 +3,11 @@ $( document ).ready(function() {
 
   const createMapElement = function(users){
 
+    let count=3;
     for (let map of users) {
-      let count=1;
       $("#map-container").append(`
           <article class=map-grid>
-            <div id="map3" class='map map-item' style='width: 100%; height: 100%;'></div>
+            <div id="${map.id}" class='map map-item' style='width: 100%; height: 100%;'></div>
             <h3 class=map-name title='view map'>${map.title}</h3>
             <span class=user-handle title="go to user's maps"> ${map.email} <i class="fas fa-atlas"></i></span><br>
             <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
@@ -26,7 +26,9 @@ $( document ).ready(function() {
     url: "/api/users"
   }).then((users) => {
     createMapElement(users.users);
-    //callMapMakerFunction
+    for(let map of users.users) {
+       mapMaker(map.id);
+    }
   });;
 });
 
