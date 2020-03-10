@@ -10,7 +10,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieParser = require('cookie-parser');
-const {formHandling} = require('./public/scripts/formHandling');
+const {formHandling} = require('./formHandling');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
