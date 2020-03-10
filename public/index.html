@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <script src="https://kit.fontawesome.com/90d60d73c6.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="scripts/map.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -49,41 +50,20 @@
       <div id="map" class=map></div>
 
       <div class=flex>
-
-        <article class=map-grid>
-          <div id="map2" class='map map-item' style='width: 100%; height: 100%;'></div>
-          <h3 class=map-name title='view map'>map-name</h3>
-          <span class=user-handle title="go to user's maps">@user-email <i class="fas fa-atlas"></i></span><br>
-          <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
-          <a class=map-option href="http://" title='Delete Map'><i class="fas fa-times"></i></a>
-          <a class=map-option href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a>
-          <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
-          <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
-        </article>
-
-        <article class=map-grid>
-          <div id="map3" class='map map-item' style='width: 100%; height: 100%;'></div>
-          <h3 class=map-name title='view map'>map-name</h3>
-          <span class=user-handle title="go to user's maps">@user-email <i class="fas fa-atlas"></i></span><br>
-          <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
-          <a class=map-option href="http://" title='Delete Map'><i class="fas fa-times"></i></a>
-          <a class=map-option href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a>
-          <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
-          <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
-        </article>
-
-        <article class=map-grid>
-          <div id="map4" class='map map-item' style='width: 100%; height: 100%;'></div>
-          <h3 class=map-name title='view map'>map-name</h3>
-          <span class=user-handle title="go to user's maps">@user-email <i class="fas fa-atlas"></i></span><br>
-          <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
-          <a class=map-option href="http://" title='Delete Map'><i class="fas fa-times"></i></a>
-          <a class=map-option href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a>
-          <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
-          <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
-        </article>
-      </div>
-      <div id = maps>
+        <div id="map-container">
+          <article class=map-grid>
+            <div id="map2" class='map map-item' style='width: 100%; height: 100%;'></div>
+            <h3 class=map-name title='view map'>map-name</h3>
+            <span class=user-handle title="go to user's maps">@user-email <i class="fas fa-atlas"></i></span><br>
+            <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
+            <a class=map-option href="http://" title='Delete Map'><i class="fas fa-times"></i></a>
+            <a class=map-option href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a>
+            <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
+            <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
+          </article>
+        </div>
+        </div>
+        <div id = maps>
 
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
@@ -99,7 +79,6 @@
 
 
   <!-- Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>

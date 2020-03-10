@@ -34,9 +34,17 @@ module.exports = db => {
       return db.query(queryString, queryParams).then(res => res.rows);
     };
 
+<<<<<<< HEAD
     getAllMaps(10)
       .then(maps => {
         res.send({ maps }).catch(err => {
+=======
+      getAllMaps(10)
+      .then(
+        maps => {
+          res.send({
+            maps}).catch(err => {
+>>>>>>> serializingData
           res.status(500).json({ error: err.message });
         });
       })
