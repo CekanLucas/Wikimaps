@@ -1,18 +1,16 @@
 $(document).ready(() => {
-/*   $('.btn.btn-warning')
+  $('.btn.btn-warning')
 
-  $('login-button').click( e => {
-
-    $.ajax({
-      method: 'post',
-      url: 'http://localhost:8080/login',
-      data:
-    })
-    .then(res => {})
-  }) */
-
-
-
-
-
+  $('login-button').click( () => {
+   $('#input-form').submit(
+     e => {
+       e.preventDefault();
+       $.ajax({
+         method: 'post',
+         url: 'http://localhost:8080/login',
+         data: $('#input-form').serialize()
+       })
+     }
+   )
+  })
 });

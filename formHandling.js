@@ -1,6 +1,5 @@
 
 const formHandling = (request, response, users) => {
-  // const {users, urlDatabase} = require('../express_server');
   // 2 paths login and registration
   // State 1: input: email button1: login  button2: register
   // State 2: input: pass  button1: submit button2: back
@@ -10,17 +9,13 @@ const formHandling = (request, response, users) => {
   const email    = request.cookies['email_validated'];
   const pass     = request.cookies['pass_validated'];
   const register = request.cookies['registration'];
-  // console.log(users)
+
   //State 1: ask for email
-  if(!email && !pass){ //WORKS!!!!
-    console.log('read input',request.body['login-email']);
-    // console.log(users);
+  if(!email && !pass){
     for(user of users){
-      console.log(user)
       if (request.body['login-email'] === user.email){
         response.cookie('user_id' ,user.id);
         response.cookie('email_validated' , true);
-        console.log('about to return')
         response.send('email validated')
         return;
       }
@@ -30,16 +25,17 @@ const formHandling = (request, response, users) => {
 
   //State 2: ask for password
   else if(email && !pass){
-    console.log('PASS NOT VALIDATED')
-    const id = request.cookies['user_id'];
-    if (bcrypt.compareSync(request.body.loginPass, users[id].hash)){
-      request.cookies.pass_validated = 'true';
-      response.redirect('http://localhost:8080/')
+    for(user of users){
+      if (request.body.loginPass = users.pass){
+        response.cookies(pass_validated , 'true');
+        response.send('password validated');
+        return;
+      }
+      else{response.status(401).send('invalid password')};
     }
-    else{response.status(401).send('invalid password')};
     } else{
-      console.log('VALIDATED');
-      response.send('snd');
+      response.send('user is logged in');
+      return;
     }
 }
 
