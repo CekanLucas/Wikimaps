@@ -40,7 +40,8 @@
       getAllMaps(10)
       .then(
         maps => {
-          res.send({maps}).catch(err => {
+          res.send({
+            maps}).catch(err => {
           res.status(500).json({ error: err.message });
           });
         })
