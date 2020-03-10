@@ -10,13 +10,7 @@ const formHandling = (request, response) => {
   const email    = request.cookies.email_validated;
   const pass     = request.cookies.pass_validated;
   const register = request.cookies.registration;
-  console.log('COOKIES YAY',request.cookies)
-  response.cookie('email_validated' , 'true');
-  response.cookie('email_validated' , 'true');
-  response.cookie('registration' , 'true');
-  // request.cookies('resgistration_validated' , 'true');
-  console.log('COOKIES YAY',request.cookies)
-  console.log('COOKIES YAY',request.cookies.registration)
+  console.log('Read cookies', email, pass)
 
   //State 1: ask for email
   if(!email && !pass){

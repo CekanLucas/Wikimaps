@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <script src="https://kit.fontawesome.com/90d60d73c6.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
     <script src="scripts/map.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
@@ -32,14 +31,14 @@
            Enter Email:&nbsp;<b><span class=text-light>&nbsp;&nbsp;&nbsp;</span</b>
       <form
       class='form-control form-control-lg form-inline'
-      action="/login" method=POST id=LoginForm
+      action="/login" method=POST
       style="display:contents !important" name=usernameform>
         <input class=form-control name=loginEmail type="email" placeholder="example@email.com">
         <button class='btn btn-warning'>Login</button>
     </form>
     <form
       class='form-control form-control-lg form-inline'
-      action="/register" method=GET id=LoginForm
+      action="/register" method=GET
       style="display:contents !important" name=usernameform>
         <button class='btn btn-warning'>Register</button>
     </form>
@@ -87,18 +86,8 @@
 
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
-
-
-      <script src="scripts/network.js"></script>
-      <script src="scripts/views_manager.js"></script>
-      <script src="scripts/index.js"></script>
-
-      <script src="scripts/components/map_listings.js"></script>
   </main>
 
-
-
-  <!-- Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

@@ -51,16 +51,28 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index.html");
-  req.cookies
-  //res.redirect('/index.html')
+  console.log(res.redirect('/api/widgets'))
+
+  let query = `SELECT * FROM users;`;
+    console.log(query);
+   const users = db.query(query)
+      .then(data => {
+        const widgets = data.rows;
+        res.json({ widgets });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+    console.log(users)
 });
 
 app.post("/login", (req, res)=> {
-  const loginEmail = req.body.loginEmail;
-  const loginPass  = req.body.loginPass;
 
   // check if user and password field is filled in
+  const loginEmail = req.body.loginEmail;
+  const loginPass  = req.body.loginPass;
   if(loginEmail === '' && loginPass === undefined){
     res.status(403).send('Please fill out email field');
     return;
@@ -72,6 +84,23 @@ app.post("/login", (req, res)=> {
   formHandling(req, res);
 });
 
+app.post("/register", (req, res)=> {
+
+  // check if user and password field is filled when registering
+  const loginEmail = req.body.loginEmail;
+  const loginPass  = req.body.loginPass;
+  if(loginEmail === '' && loginPass === undefined){
+    res.status(403).send('Please fill out email field');
+    return;
+  }
+  if(loginEmail === undefined && loginPass === ''){
+    res.status(403).send('Please fill out password field');
+    return;
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
