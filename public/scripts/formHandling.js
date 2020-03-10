@@ -7,20 +7,21 @@ const formHandling = (request, response, users) => {
   // State 3: input: none  button1: logout button2: none
 
   //using cookie value to determine state
-  const email    = request.cookies.email_validated;
-  const pass     = request.cookies.pass_validated;
-  const register = request.cookies.registration;
-  console.log('Read cookies', email, pass)
-
+  const email    = request.cookies['email_validated'];
+  const pass     = request.cookies['pass_validated'];
+  const register = request.cookies['registration'];
+  // console.log(users)
   //State 1: ask for email
-  if(!email && !pass){
-    console.log(users)
-    for(id in users){
-      if (request.body.loginEmail === users[id].email){
-        request.cookies.user_id = id;
-        response.cookie('email_validated' , 'true');
-        console.log('COOKIES YAY',request.cookies)
-        // response.redirect('http://localhost:8080/')
+  if(!email && !pass){ //WORKS!!!!
+    console.log('read input',request.body['login-email']);
+    // console.log(users);
+    for(user of users){
+      console.log(user)
+      if (request.body['login-email'] === user.email){
+        response.cookie('user_id' ,user.id);
+        response.cookie('email_validated' , true);
+        console.log('about to return')
+        response.send('email validated')
         return;
       }
     }
@@ -30,7 +31,7 @@ const formHandling = (request, response, users) => {
   //State 2: ask for password
   else if(email && !pass){
     console.log('PASS NOT VALIDATED')
-    const id = request.cookies.user_id;
+    const id = request.cookies['user_id'];
     if (bcrypt.compareSync(request.body.loginPass, users[id].hash)){
       request.cookies.pass_validated = 'true';
       response.redirect('http://localhost:8080/')

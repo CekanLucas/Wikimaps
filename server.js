@@ -71,8 +71,8 @@ app.post("/login", (req, res)=> {
   let query = `SELECT * FROM users;`;
    db.query(query)
       .then(data => {
-        // res.json({ widgets });// respond with JSON
         formHandling(req, res, data.rows);
+        return;
       })
       .catch(err => {
         res
