@@ -1,5 +1,5 @@
 
-const formHandling = (request, response) => {
+const formHandling = (request, response, users) => {
   // const {users, urlDatabase} = require('../express_server');
   // 2 paths login and registration
   // State 1: input: email button1: login  button2: register
@@ -14,6 +14,7 @@ const formHandling = (request, response) => {
 
   //State 1: ask for email
   if(!email && !pass){
+    console.log(users)
     for(id in users){
       if (request.body.loginEmail === users[id].email){
         request.cookies.user_id = id;
