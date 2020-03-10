@@ -18,7 +18,7 @@ const placeMarker = function(location, map, mapid) {
   console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
-    content: `<form id="marker-form" action="/api/maps/markers" method="POST">
+    content: `<form id="marker-form">
       <p>Create New Marker</p>
       <div>
         <input name="title" placeholder="Title" />
@@ -47,6 +47,38 @@ const placeMarker = function(location, map, mapid) {
     infowindow.open(map, marker);
   });
 };
+
+$(document).on("submit", "#marker-form", function(evt) {
+  evt.preventDefault();
+  let title = $(this.title).serialize();
+  let description = $(this.description).serialize();
+  let address = $(this.address).serialize();
+  let image_url = $(this.image_url).serialize();
+  let map_id = $(this.mapid).serialize();
+  let latitude = $(this.lat).serialize();
+  let longitude = $(this.lng).serialize();
+
+  // TODO: make api call to store marker info in databasr
+
+  // TODO: find marker in window.maps, by using the mapid and the lat and long,
+  // and then update with the information remove form
+  console.log(
+    "pointer data: ",
+    title,
+    "\n",
+    description,
+    "\n",
+    address,
+    "\n",
+    image_url,
+    "\n",
+    map_id,
+    "\n",
+    latitude,
+    "\n",
+    longitude
+  );
+});
 
 // let infowindow = new google.maps.InfoWindow({});
 

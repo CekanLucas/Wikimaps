@@ -9,7 +9,6 @@ const express = require("express");
 const router = express.Router();
 module.exports = db => {
   router.get("/", (req, res) => {
-
     const getAllMaps = function(limit) {
       // 1
       console.log("called");
@@ -102,11 +101,27 @@ module.exports = db => {
     res.send(`<h1> OK</h1>`);
   });
 
-
-
-  const createNewMarker = function( user_id, map_id, title, description, image_url, address, latitude, longitude) {
+  const createNewMarker = function(
+    user_id,
+    map_id,
+    title,
+    description,
+    image_url,
+    address,
+    latitude,
+    longitude
+  ) {
     // 1
-    const queryParams = [user_id, map_id, title, description, image_url, address, latitude, longitude];
+    const queryParams = [
+      user_id,
+      map_id,
+      title,
+      description,
+      image_url,
+      address,
+      latitude,
+      longitude
+    ];
     // 2
     let queryString = ` INSERT INTO pointers (user_id, map_id, title, description, image_url, address, latitude, longitude) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) `;
     //5
@@ -115,13 +130,13 @@ module.exports = db => {
     return db.query(queryString, queryParams).then(res => res.rows[0]);
   };
 
-  router.post("/markers", (req, res) => {
-    console.log("GOT HERE");
-    let data = req.body;
-    console.log(data);
-    let user_id = 1;
-    // createNewMarker(user_id, map_id, title, description, image_url, address, latitude, longitude);
-    res.send(`<h1> marker-form POST request works! </h1>`);
-  });
+  // router.post("/markers", (req, res) => {
+  //   console.log("GOT HERE");
+  //   let data = req.body;
+  //   console.log(data);
+  //   let user_id = 1;
+  //   // createNewMarker(user_id, map_id, title, description, image_url, address, latitude, longitude);
+  //   res.send(`<h1> marker-form POST request works! </h1>`);
+  // });
   return router;
 };
