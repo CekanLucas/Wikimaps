@@ -1,26 +1,21 @@
-// global marker array
-window.markers = [];
-
 //helper function that generates new map marker on click event
-const placeMarker = function(location, map) {
+const placeMarker = function(location, map, mapid) {
   let marker = new google.maps.Marker({
     position: location,
     map: map,
     draggable: true,
     user_id: 1,
-    map_id: 1
+    map_id: mapid
   });
 
-  window.markers.push([
-    marker.user_id,
-    marker.map_id,
-    marker.position.lat(),
-    marker.position.lng()
-  ]);
+  window.maps[mapid].markers.push({
+    userid: marker.user_id,
+    lat: marker.position.lat(),
+    lng: marker.position.lng()
+  });
   console.log(marker.position.lat());
   console.log(marker.position.lng());
-  console.log(marker.map_id);
-  console.log(window.markers);
+  console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
     content: `<form id="marker-form" action="/api/maps/markers" method="POST">
@@ -60,7 +55,7 @@ window.initMap = mapid => {
   console.log(mapid);
   console.log(document.getElementById(mapid));
   mapMaker("map");
-  mapMaker("map2");
+  // mapMaker("map2");
 
   // mapMaker("map4");
 };
@@ -76,7 +71,7 @@ const mapMaker = function(mapid) {
   // on click map event handler
   google.maps.event.addListener(map, "click", function(event) {
     console.log("click detected");
-    placeMarker(event.latLng, map);
+    placeMarker(event.latLng, map, mapid);
   });
 };
 

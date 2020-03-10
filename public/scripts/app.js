@@ -1,9 +1,8 @@
-$( document ).ready(function() {
-  console.log( "ready!" );
+$(document).ready(function() {
+  console.log("ready!");
 
-  const createMapElement = function(users){
-
-    let count=3;
+  const createMapElement = function(users) {
+    let count = 3;
     for (let map of users) {
       $("#map-container").append(`
           <article class=map-grid>
@@ -16,20 +15,22 @@ $( document ).ready(function() {
             <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
             <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
           </article>
-    `)
-    count++;
-  }
-  }
+    `);
+      count++;
+    }
+  };
 
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).then((users) => {
+  }).then(users => {
     createMapElement(users.users);
-    for(let map of users.users) {
-       mapMaker(map.id);
+    window.maps = {};
+    for (let map of users.users) {
+      window.maps[map.id] = {
+        markers: []
+      };
+      mapMaker(map.id);
     }
-  });;
+  });
 });
-
-
