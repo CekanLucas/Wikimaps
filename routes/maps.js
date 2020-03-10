@@ -11,27 +11,11 @@ module.exports = db => {
   router.get("/", (req, res) => {
     const getAllMaps = function(limit) {
       // 1
-
-<<<<<<< HEAD
-  const express = require('express');
-  const router  = express.Router();
-  module.exports = (db) => {
-
-    router.get('/', (req, res) => {
-
-      const getAllMaps = function(limit) {
-        // 1
-        console.log('called')
-        const queryParams = [];
-        // 2
-        let queryString = `
-          SELECT * FROM maps;
-=======
+      console.log("called");
       const queryParams = [];
       // 2
       let queryString = `
-          SELECT * FROM maps
->>>>>>> 8fc62a00504ab66936072fd43fc07f60df326ade
+          SELECT * FROM maps;
           `;
 
       // if (options.user_id) {
@@ -50,23 +34,9 @@ module.exports = db => {
       return db.query(queryString, queryParams).then(res => res.rows);
     };
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     getAllMaps(10)
       .then(maps => {
         res.send({ maps }).catch(err => {
-=======
->>>>>>> 8fc62a00504ab66936072fd43fc07f60df326ade
-      getAllMaps(10)
-      .then(
-        maps => {
-          res.send({
-            maps}).catch(err => {
-<<<<<<< HEAD
-=======
->>>>>>> serializingData
->>>>>>> 8fc62a00504ab66936072fd43fc07f60df326ade
           res.status(500).json({ error: err.message });
         });
       })
@@ -103,7 +73,6 @@ module.exports = db => {
   router.get("/new", (req, res) => {
     res.render("map_form", { foo: "test" });
   });
-<<<<<<< HEAD
 
   const createNewMap = function(
     user_id,
@@ -122,26 +91,6 @@ module.exports = db => {
     return db.query(queryString, queryParams).then(res => res.rows[0]);
   };
 
-=======
-
-  const createNewMap = function(
-    user_id,
-    title,
-    description,
-    image_url,
-    active
-  ) {
-    // 1
-    const queryParams = [user_id, title, description, image_url, active];
-    // 2
-    let queryString = ` INSERT INTO maps (user_id, title, description, image_url, active) VALUES ($1,$2,$3,$4,$5) `;
-    //5
-    console.log(queryString, queryParams);
-    // 6
-    return db.query(queryString, queryParams).then(res => res.rows[0]);
-  };
-
->>>>>>> 8fc62a00504ab66936072fd43fc07f60df326ade
   router.post("/", (req, res) => {
     console.log("GOT HERE");
     let data = req.body;
