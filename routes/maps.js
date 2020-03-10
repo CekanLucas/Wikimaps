@@ -15,7 +15,7 @@ module.exports = db => {
       const queryParams = [];
       // 2
       let queryString = `
-          SELECT * FROM maps;
+          SELECT * FROM maps
           `;
 
       // if (options.user_id) {
