@@ -8,18 +8,19 @@ const placeMarker = function(location, map) {
 };
 
 // const placeInfowindow = function(map, marker) {
-let infowindow = new google.maps.InfoWindow({
-  content:
-    '<div id="content">' +
-    '<div id="siteNotice">' +
-    "</div>" +
-    '<h1 id="firstHeading" class="firstHeading">hello world</h1>' +
-    '<div id="bodyContent">' +
-    "<p><b>Hello World</b>" +
-    "</div>" +
-    "</div>"
-});
+// let infowindow = new google.maps.InfoWindow({
+// content:
+//   '<div id="content">' +
+//   '<div id="siteNotice">' +
+//   "</div>" +
+//   '<h1 id="firstHeading" class="firstHeading">hello world</h1>' +
+//   '<div id="bodyContent">' +
+//   "<p><b>Hello World</b>" +
+//   "</div>" +
+//   "</div>"
+// });
 // };
+// let infowindow = new google.maps.InfoWindow({});
 
 // Initialize and add the map
 window.initMap = mapid => {
@@ -44,9 +45,9 @@ const mapMaker = function(mapid) {
     console.log("click detected");
     placeMarker(event.latLng, map);
   });
-  marker.addListener("click", function() {
-    infowindow.open(map, marker);
-  });
+  // marker.addListener("click", function() {
+  //   infowindow.open(map, marker);
+  // });
 };
 
 // google.maps.event.addDomListener(window, "load", initMap);
