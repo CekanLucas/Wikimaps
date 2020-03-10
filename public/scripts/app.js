@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+// const db = require("../routes/maps");
+
+>>>>>>> a9fecd1fa7de2d15e9cbc7c54176bd269807bcaa
 $(document).ready(function() {
   console.log("ready!");
 
