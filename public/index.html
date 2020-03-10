@@ -32,19 +32,21 @@
       </div>
         <b><span class='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
 
+<!-- input form -->
     <form
       class='form-control form-control-lg form-inline'
-      action="/login" method=POST id='input-form'
+      id='input-form'
       style="display:contents !important" name=usernameform>
         <input class=form-control name=login-email type="email" placeholder="example@email.com">
-        <button class='btn btn-warning'>Login</button>
-    </form>
+      </form>
+      <button class='btn btn-warning' id='login-button'>Login</button>
 
+<!-- register -->
     <form
       class='form-control form-control-lg form-inline'
       action="/register" method=GET
       style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=login-button>Register</button>
+        <button class='btn btn-warning' id=register-button>Register</button>
     </form>
       </nav>
     </header>

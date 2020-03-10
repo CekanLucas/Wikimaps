@@ -1,16 +1,29 @@
 $(document).ready(() => {
-  $('.btn.btn-warning')
-
-  $('login-button').click( () => {
+  console.log('Form Ready')
+  $('login-button').click( e => {
+  // e.preventDefault();
+  console.log('Login button clicked')
    $('#input-form').submit(
      e => {
        e.preventDefault();
        $.ajax({
-         method: 'post',
-         url: 'http://localhost:8080/login',
-         data: $('#input-form').serialize()
+         type: 'POST',
+         url: '/login',
+       })
+       .then( res => {
+         if(res === 'email validated')
+         console.log(res)
        })
      }
    )
+   $('#input-form').trigger('submit');
   })
+
+
+
+
+  $('form-msg').click( () => {
+    console.log('clicked')
+    $.css('color') = red;
+  }  )
 });
