@@ -61,7 +61,7 @@ window.initMap = mapid => {
   console.log(document.getElementById(mapid));
   mapMaker("map");
   mapMaker("map2");
-  // mapMaker("map3");
+
   // mapMaker("map4");
 };
 
