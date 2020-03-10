@@ -29,7 +29,7 @@ window.initMap = mapid => {
   mapMaker("map");
   mapMaker("map2");
   mapMaker("map3");
-  mapMaker("map4");
+  // mapMaker("map4");
 };
 
 // helper function that generates user maps.
