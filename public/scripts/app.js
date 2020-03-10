@@ -26,9 +26,7 @@ $( document ).ready(function() {
     url: "/api/users"
   }).then((users) => {
     createMapElement(users.users);
-    // for(user of users[0]) {
-    //   $("<div>").text(user.name).appendTo($("body"));
-    // }
+    //callMapMakerFunction
   });;
 });
 

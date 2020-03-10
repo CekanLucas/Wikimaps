@@ -50,4 +50,5 @@ const mapMaker = function(mapid) {
   // });
 };
 
+module.exports = {mapMaker, placeMarker}
 // google.maps.event.addDomListener(window, "load", initMap);
