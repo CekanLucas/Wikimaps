@@ -12,26 +12,10 @@ module.exports = db => {
     const getAllMaps = function(limit) {
       // 1
 
-<<<<<<< HEAD
-  const express = require('express');
-  const router  = express.Router();
-  module.exports = (db) => {
-
-    router.get('/', (req, res) => {
-
-      const getAllMaps = function(limit) {
-        // 1
-        console.log('called')
-        const queryParams = [];
-        // 2
-        let queryString = `
-          SELECT * FROM maps;
-=======
       const queryParams = [];
       // 2
       let queryString = `
           SELECT * FROM maps
->>>>>>> 8fc62a00504ab66936072fd43fc07f60df326ade
           `;
 
       // if (options.user_id) {
