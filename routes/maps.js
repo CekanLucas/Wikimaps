@@ -10,15 +10,15 @@
   const router  = express.Router();
   module.exports = (db) => {
 
-    router.get('/test', (req, res) => {
+    router.get('/', (req, res) => {
 
       const getAllMaps = function(limit) {
         // 1
-        console.log('called')
+
         const queryParams = [];
         // 2
         let queryString = `
-          SELECT * FROM maps;
+          SELECT * FROM maps
           `;
 
         // if (options.user_id) {
@@ -48,6 +48,39 @@
         console.error(e);
         res.send(e)
       });
+
+      const getMapsByEmail = function (email,limit) {
+        const queryParams = [];
+        // 2
+        let queryString = `
+          SELECT * FROM maps
+          WHERE true
+          `;
+
+        if (email) {
+          queryParams.push(email);
+          queryString += `AND user_id = $${queryParams.length} `;
+        }
+
+        // 4
+        queryParams.push(limit);
+        queryString += `
+        LIMIT $${queryParams.length};
+        `;
+        //5
+        console.log(queryString, queryParams);
+        // 6
+        return db.query(queryString, queryParams).then(res => res.rows);
+      }
+
+
+
+
+
+
+
+
+
     });
 
 
