@@ -1,63 +1,31 @@
-$(document).ready(() => {
-  // Initialize and add the map
-  const initMap = (mapid) => {
-    let image = '../images/Marker.png';
-    let image2 = '../images/DanceMarker.png';
-      // The location of DKcenter
-      let DKcoor = {lat: -34.742750, lng: 138.660641};
-      // The map, centered bit to the side of Dkcenter
-      let map = new google.maps.Map(
-        document.getElementById(mapid), {zoom: 13, center: DKcoor});
-      // The marker, positioned at dk center
-      let marker = new google.maps.Marker({
-      position: DKcoor,
-      map: map,
-      title:'Main\n10 Trimmer Rd.\nElizabeth South\nSouth Australia\n5112',
-      icon: image
-    })
-    let marker2 = new google.maps.Marker({
-      position: {lat: -34.731211, lng: 138.660750},
-      map: map,
-      title:'Dance Studio\n6 Chivell.\nElizabeth South\nSouth Australia\n5112',
-      icon: image2
-    });
-    //infowindow -iw Main Building
-    let contentString =
-        '<h3> Main Building </h3>'
-        +'<p>'
-        +	'mobile: <a href="tel:0411 421 945">0411 421 945</a> <br>'
-        +	'email: <a href="mailto:davidjgarrard@bigpond.com"> davidjgarrard@bigpond.com </a><br>'
-        +	'address: <a href="#" onclick="centerMap()">10 Trimmer Rd.</a>'
-        +'</p>'
-      ;
+//helper function that generates new map marker on click event
+const placeMarker = function(location, map) {
+  let marker = new google.maps.Marker({
+    position: location,
+    map: map,
+    draggable: true
+  });
+};
 
-    let infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
+// Initialize and add the map
+window.initMap = mapid => {
+  console.log(mapid);
+  console.log(document.getElementById(mapid));
+  mapMaker("map");
+  mapMaker("map2");
+};
 
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-    //infowindow -iw Dance Studio
-    let contentString2 =
-      '<h3> Dance Studio </h3>'
-      +'<p>'
-      +	'mobile: <a href="tel:0411 421 945">0411 421 945</a> <br>'
-      +	'email: <a href="mailto:davidjgarrard@bigpond.com"> davidjgarrard@bigpond.com </a><br>'
-      +	'address: <a href="#" onclick="centerMap()">6 Chivell St.</a>'
-      +'</p>'
-    ;
+const mapMaker = function(mapid) {
+  const lhl = { lat: 43.6529, lng: -79.3849 };
+  let map = new google.maps.Map(document.getElementById(mapid), {
+    zoom: 13,
+    center: lhl
+  });
+  // on click map event handler
+  google.maps.event.addListener(map, "click", function(event) {
+    console.log("click detected");
+    placeMarker(event.latLng, map);
+  });
+};
 
-    let infowindow2 = new google.maps.InfoWindow({
-      content: contentString2
-    });
-
-    marker2.addListener('click', function() {
-      infowindow2.open(map, marker2);
-    });
-  }
-  initMap(`map`);
-  initMap(`map2`);
-  initMap(`map3`);
-  initMap(`map4`);
-})
+// google.maps.event.addDomListener(window, "load", initMap);
