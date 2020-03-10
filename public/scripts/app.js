@@ -1,3 +1,5 @@
+const db = require("../routes/maps");
+
 $(document).ready(function() {
   console.log("ready!");
 
@@ -25,9 +27,11 @@ $(document).ready(function() {
     url: "/api/users"
   }).then(users => {
     createMapElement(users.users);
+    //global object
     window.maps = {};
     for (let map of users.users) {
       window.maps[map.id] = {
+        user_id: map.user_id,
         markers: []
       };
       mapMaker(map.id);
