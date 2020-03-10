@@ -30,14 +30,16 @@
           <a class="nav-item nav-link" href="/api/maps">Browse Maps</a>
         </div>
       </div>
-           Enter Email:&nbsp;<b><span class=text-light>&nbsp;&nbsp;&nbsp;</span</b>
-      <form
+        <b><span class='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
+
+    <form
       class='form-control form-control-lg form-inline'
       action="/login" method=POST
       style="display:contents !important" name=usernameform>
-        <input class=form-control name=loginEmail type="email" placeholder="example@email.com">
+        <input class=form-control name=login-email type="email" placeholder="example@email.com">
         <button class='btn btn-warning'>Login</button>
     </form>
+
     <form
       class='form-control form-control-lg form-inline'
       action="/register" method=GET
