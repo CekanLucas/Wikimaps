@@ -8,7 +8,6 @@ const formHandling = (request, response, users) => {
   //using cookie value to determine state
   const email    = request.cookies['email_validated'];
   const pass     = request.cookies['pass_validated'];
-  const register = request.cookies['registration'];
 
   //State 1: ask for email
   if(!email && !pass){
@@ -33,7 +32,7 @@ const formHandling = (request, response, users) => {
       }
       else{response.status(401).send('invalid password')};
     }
-    } else{
+    } else{ //State 3: user logged in
       response.send('user is logged in');
       return;
     }
