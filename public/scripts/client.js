@@ -1,29 +1,30 @@
-$(document).ready(() => {
+$(document).ready(  () => {
   console.log('Form Ready')
-  $('login-button').click( e => {
-  // e.preventDefault();
-  console.log('Login button clicked')
-   $('#input-form').submit(
-     e => {
-       e.preventDefault();
-       $.ajax({
-         type: 'POST',
-         url: '/login',
-       })
-       .then( res => {
-         if(res === 'email validated')
-         console.log(res)
-       })
-     }
-   )
-   $('#input-form').trigger('submit');
-  })
+  $('#login-button').click( e => {
+    console.log('Login button click')
+    $('#input-form').trigger('submit');
+  // $('#input-form').trigger('submit');
+})
 
+$('#input-form').submit(
+  e => {
+    e.preventDefault();
+    console.log('submitinger')
+    $.ajax({
+      type: 'POST',
+      url: '/login',
+    })
+    .then( res => {
+      console.log('Response')
+      console.log([res])
+    })
+  }
+)
 
 
 
   $('form-msg').click( () => {
     console.log('clicked')
-    $.css('color') = red;
+    $('#form-msg').css('color','red');
   }  )
 });
