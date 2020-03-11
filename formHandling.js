@@ -12,7 +12,7 @@ const formHandling = (request, response, users) => {
   //State 1: ask for email
   if(!email && !pass){
     for(user of users){
-      if (request.body['login-email'] === user.email){
+      if (request.body['email'] === user.email){
         response.cookie('user_id' ,user.id);
         response.cookie('email_validated' , true);
         response.send('email validated')

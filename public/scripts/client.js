@@ -10,13 +10,13 @@ $(document).ready(  () => {
 
 $('#input-form').submit(
   e => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('submitinger')
-     $.ajax({
+     return $.ajax({
       type: 'POST',
       url: '/login',
     })
-    .then( (res, a, b) => {
+    .then( (res) => {
       console.log('Response')
       console.log([res])
       console.log(a, b)
