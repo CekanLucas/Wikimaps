@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-=======
-// const db = require("../routes/maps");
-
->>>>>>> a9fecd1fa7de2d15e9cbc7c54176bd269807bcaa
 $(document).ready(function() {
   console.log("ready!");
 
@@ -40,4 +35,33 @@ $(document).ready(function() {
       mapMaker(map.id);
     }
   });
+
+  const createNewMarker = function(
+    user_id,
+    map_id,
+    title,
+    description,
+    image_url,
+    address,
+    latitude,
+    longitude
+  ) {
+    // 1
+    const queryParams = [
+      user_id,
+      map_id,
+      title,
+      description,
+      image_url,
+      address,
+      latitude,
+      longitude
+    ];
+    // 2
+    let queryString = ` INSERT INTO pointers (user_id, map_id, title, description, image_url, address, latitude, longitude) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) `;
+    //5
+    console.log(queryString, queryParams);
+    // 6
+    return db.query(queryString, queryParams).then(res => res.rows[0]);
+  };
 });
