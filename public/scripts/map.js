@@ -18,7 +18,7 @@ const placeMarker = function(location, map, mapid) {
   console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
-    content: `<form id="marker-form" action="/api/maps/markers" method="POST">
+    content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
       <p>Create New Marker</p>
       <div>
         <input name="title" placeholder="Title" />
@@ -35,8 +35,13 @@ const placeMarker = function(location, map, mapid) {
       <div>
         <input type="text" name="image_url" placeholder="Image Url" />
       </div>
+
+      <input type="hidden" name="user_id" value="1" />
+      <input type="hidden" name="mapid" value="${mapid}" />
+      <input type="hidden" name="lat" value="${marker.position.lat()}" />
+      <input type="hidden" name="lng" value="${marker.position.lng()}" />
       <div>
-        <button type="submit" href="/api/maps/new">Create</button>
+        <button type="submit" href="/api/maps/markers">Create</button>
         <a id="login-form__cancel" href="/">Cancel</a>
       </div>
     </form>
@@ -48,6 +53,44 @@ const placeMarker = function(location, map, mapid) {
   });
 };
 
+$(document).on("submit", "#marker-form", function(evt) {
+  evt.preventDefault();
+
+  //put this in object
+  let markerData = {
+    title: $(this.title).val(),
+    description: $(this.description).val(),
+    address: $(this.address).val(),
+    image_url: $(this.image_url).val(),
+    user_id: $(this.user_id).val(),
+    map_id: $(this.mapid).val(),
+    latitude: $(this.lat).val(),
+    longitude: $(this.lng).val()
+  };
+
+  $.ajax({
+    url: "/api/maps/markers",
+    method: "POST",
+    data: markerData
+  }).then(data => {
+    console.log(data);
+  });
+
+  // TODO: make api call to store marker info in databasr
+  // TODO: find marker in window.maps, by using the mapid and the lat and long,
+  // // and then update with the information remove form
+  // createNewMarker(
+  //   user_id,
+  //   map_id,
+  //   title,
+  //   description,
+  //   image_url,
+  //   address,
+  //   latitude,
+  //   longitude
+  // );
+});
+
 // let infowindow = new google.maps.InfoWindow({});
 
 // Initialize and add the map
@@ -56,7 +99,6 @@ window.initMap = mapid => {
   console.log(document.getElementById(mapid));
   mapMaker("map");
   // mapMaker("map2");
-
   // mapMaker("map4");
 };
 
