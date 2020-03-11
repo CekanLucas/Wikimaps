@@ -18,8 +18,7 @@ $('#input-form').submit(
     })
     .then( (res) => {
       console.log('Response')
-      console.log([res])
-      console.log(a, b)
+      $('#input-form input').attr('name','password').attr('type','password')
       return;
     })
     .catch(e => {

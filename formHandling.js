@@ -8,6 +8,7 @@ const formHandling = (request, response, users) => {
   //using cookie value to determine state
   const email    = request.cookies['email_validated'];
   const pass     = request.cookies['pass_validated'];
+  const userID   = request.cookies['user_id'];
 
   //State 1: ask for email
   if(!email && !pass){
@@ -25,14 +26,18 @@ const formHandling = (request, response, users) => {
   //State 2: ask for password
   else if(email && !pass){
     for(user of users){
-      if (request.body.loginPass = users.pass){
-        response.cookies(pass_validated , 'true');
+      if (
+        // need to make number to work
+        Number(userID) === Number(user.id) &&
+        request.body['password'] === user.password
+        ){
+        response.cookie('pass_validated', 'true');
         response.send('password validated');
         return;
       }
-      else{response.status(401).send('invalid password')};
     }
-    } else{ //State 3: user logged in
+    response.status(401).send('invalid password');
+  } else{ //State 3: user logged in
       response.send('user is logged in');
       return;
     }
