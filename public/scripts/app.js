@@ -4,7 +4,6 @@ $(document).ready(function() {
   console.log("ready!");
 
   const createMapElement = function(users) {
-    let count = 3;
     for (let map of users) {
       $("#map-container").append(`
           <article class=map-grid>
@@ -18,7 +17,6 @@ $(document).ready(function() {
             <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
           </article>
     `);
-      count++;
     }
   };
 
