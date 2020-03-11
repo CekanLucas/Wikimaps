@@ -8,18 +8,19 @@ $(document).ready(  () => {
   // $('#input-form').trigger('submit');
 })
 
-$('#input-form').submit(
-  e => {
-    // e.preventDefault();
+$('#input-form').submit( e => {
+    e.preventDefault();
     console.log('submitinger')
-     return $.ajax({
+
+    $.ajax({
       type: 'POST',
       url: '/login',
+      data: {key :$('#input-form input').val()}
     })
     .then( (res) => {
       console.log('Response')
-      $('#input-form input').attr('name','password').attr('type','password')
-      return;
+      $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********')
+      return res;
     })
     .catch(e => {
       console.log('error')

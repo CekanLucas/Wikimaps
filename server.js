@@ -58,7 +58,7 @@ app.get("/", (req, res) => {});
 
 app.post("/login", (req, res) => {
   // check if user and password field is filled in
-  console.log(req.body)
+  console.log('Test', req.body)
   const loginEmail = req.body.email;
   const loginPass = req.body.loginPass;
   if (loginEmail === "" && loginPass === undefined) {
