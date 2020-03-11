@@ -1,18 +1,30 @@
-$(document).ready(() => {
-/*   $('.btn.btn-warning')
+$(document).ready(  () => {
+  console.log('Form Ready')
+  $('#login-button').click( e => {
+    console.log('Login button click')
+    $('#input-form').trigger('submit');
+  // $('#input-form').trigger('submit');
+})
 
-  $('login-button').click( e => {
-
+$('#input-form').submit(
+  e => {
+    e.preventDefault();
+    console.log('submitinger')
     $.ajax({
-      method: 'post',
-      url: 'http://localhost:8080/login',
-      data:
+      type: 'POST',
+      url: '/login',
     })
-    .then(res => {})
-  }) */
+    .then( res => {
+      console.log('Response')
+      console.log([res])
+    })
+  }
+)
 
 
 
-
-
+  $('form-msg').click( () => {
+    console.log('clicked')
+    $('#form-msg').css('color','red');
+  }  )
 });
