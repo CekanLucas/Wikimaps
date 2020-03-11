@@ -13,9 +13,9 @@ const placeMarker = function(location, map, mapid) {
     lat: marker.position.lat(),
     lng: marker.position.lng()
   });
-  console.log(marker.position.lat());
-  console.log(marker.position.lng());
-  console.log(window.maps);
+  // console.log(marker.position.lat());
+  // console.log(marker.position.lng());
+  // console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
     content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
@@ -92,14 +92,45 @@ window.initMap = mapid => {
 
 // helper function that generates user maps.
 // needs to be refactored to generate all maps connected to currently logged in user
-const mapMaker = function(mapid) {
+const mapMaker = function(mapid, mapmarkers) {
   const lhl = { lat: 43.6529, lng: -79.3849 };
   let map = new google.maps.Map(document.getElementById(mapid), {
     zoom: 10,
     center: lhl
   });
 
-  placeMarker({ lat: 43.71856743765047, lng: -79.41991892089844 }, map, mapid);
+  if (mapmarkers) {
+    for (let key in mapmarkers) {
+      // console.log(key);
+      // console.log(mapid);
+      if (key == mapid) {
+        for (let marker of mapmarkers[key]) {
+          console.log(marker);
+          let lat = Number(marker.latitude);
+          let lng = Number(marker.longitude);
+          placeMarker({ lat, lng }, map, mapid);
+        }
+      }
+    }
+  }
+
+  // return Object.keys(mapmarkers).forEach(map => {
+  //   console.log("map: ", map);
+
+  //   //cloops through object will all markers and enters if loop when mapid matches the mapiid in the mapmarkers object
+  //   if (map === mapid) {
+  //     //after selecting the write mapid we can loop through the array of markers
+  //     for (let marker of mapmarkers.map) {
+  //       // for each long
+  //       placeMarker(
+  //         { lat: marker.latitude, lng: marker.longitude },
+  //         map,
+  //         mapid
+  //       );
+  //     }
+  //   }
+  // });
+
   placeMarker({ lat: 43.80968735912084, lng: -79.5002564453125 }, map, mapid);
 
   // create a loop using all the markers and place marker
