@@ -95,12 +95,19 @@ window.initMap = mapid => {
 const mapMaker = function(mapid) {
   const lhl = { lat: 43.6529, lng: -79.3849 };
   let map = new google.maps.Map(document.getElementById(mapid), {
-    zoom: 13,
+    zoom: 10,
     center: lhl
   });
+
+  placeMarker({ lat: 43.71856743765047, lng: -79.41991892089844 }, map, mapid);
+  placeMarker({ lat: 43.80968735912084, lng: -79.5002564453125 }, map, mapid);
+
+  // create a loop using all the markers and place marker
+  placeMarker(lhl, map, mapid);
   // on click map event handler
   google.maps.event.addListener(map, "click", function(event) {
     console.log("click detected");
+    console.log(event.latLng);
     placeMarker(event.latLng, map, mapid);
   });
 };
