@@ -1,11 +1,20 @@
 // See: https://sass-lang.com/
 
+html{
+  overflow-y: hidden;
+}
+
 #map {
   position: absolute;
   height: 100%;
   width: 100%;
   z-index: -1000;
   filter: invert(1) blur(1.1px);
+}
+
+#map-container{
+  overflow-y: scroll;
+  height: 95vh;
 }
 
 main {
@@ -23,19 +32,8 @@ nav {
   width: 100%;
 }
 
-.map-item, .map-item>div {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  box-sizing: border-box;
-  z-index: 1;
-  border: 3px solid #fff;
-  border-radius: 15px;
-  filter: invert(1) sepia(0.8) hue-rotate(random(360) + deg);
-}
 
-/* FROM Tweeter */
+/* Tweeter like map list */
 .map-grid {
   color: #000;
   border: 3px solid #fff;
@@ -43,35 +41,44 @@ nav {
   margin: 1.5em;
   position: relative;
   text-align: left;
+  h3.map-name {
+    font-weight: 700;
+    font-size:1.5em;
+    padding-left: 3rem;
+  }
+  span.user-handle{
+    margin: 1.5em 0;
+    padding-left: 5rem;
+  }
+  .map-item, .map-item>div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 1;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    filter: invert(0.7) sepia(1) hue-rotate(122.7deg);
+  }
+  a{
+    display: inline-block;
+    margin-top: 1em;
+    padding: 0 6.5vh;
+    color: #000;
+    margin-bottom: 0.5em;
+  }
 }
-
+.map-grid *:hover {
+  text-shadow:1px 0px 2px cyan, 0px 1px 2px cyan, -1px 0px 2px cyan, 0px -1px 2px cyan;
+}
 h3.map-name, span.user-handle, article.map-grid a{
   position: relative;
   z-index: 3;
 }
 
-.map-grid *:hover {
-  text-shadow:1px 0px 2px cyan, 0px 1px 2px cyan, -1px 0px 2px cyan, 0px -1px 2px cyan;
-}
+// map form
+#map-form{
+  text-align: center;
 
-.map-grid h3.map-name {
-  font-weight: 700;
-  font-size:1.5em;
-  padding-left: 10rem;
 }
-.map-grid span.user-handle{
-  margin: 1.5em 0;
-  padding-left: 10rem;
-}
-
-article.map-grid a{
-  display: inline-block;
-  margin-top:2em;
-  padding-right: 1em;
-  color:#000;
-}
-
-article.map-grid a[title='Favourite Map']{
-  padding-left: 10rem;
-}
-

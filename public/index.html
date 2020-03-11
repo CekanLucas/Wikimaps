@@ -11,7 +11,8 @@
     <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
-    <script src="scripts/map.js"></script>
+    <script src="/scripts/client.js"></script>
+    <script src="/scripts/map.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
   <title>MapWiki</title>
@@ -30,21 +31,25 @@
           <a class="nav-item nav-link" href="/api/maps">Browse Maps</a>
         </div>
       </div>
-        <b><span class='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
 
+<!-- form msg -->
+        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
+
+<!-- input form -->
     <form
       class='form-control form-control-lg form-inline'
-      action="/login" method=POST
+      method=post action='/login'id='input-form'
       style="display:contents !important" name=usernameform>
-        <input class=form-control name=login-email type="email" placeholder="example@email.com">
-        <button class='btn btn-warning'>Login</button>
-    </form>
+        <input class=form-control name=email type="email" placeholder="example@email.com">
+        <button class='btn btn-warning' id='login-button'>Login</button>
+      </form>
 
+<!-- register -->
     <form
       class='form-control form-control-lg form-inline'
-      action="/register" method=GET
+      action="/register" method=post
       style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=login-button>Register</button>
+        <button class='btn btn-warning' id=register-button>Register</button>
     </form>
       </nav>
     </header>
@@ -55,7 +60,27 @@
         <div id="map-container">
         </div>
         </div>
+        <!-- Map Form -->
+        <form id="map-form" action="/api/maps" method="POST">
+          <p>Create New Map</p>
+          <div>
+            <input name="title" placeholder="Title">
+          </div>
+
+          <div>
+              <input type="text" name="description" placeholder="Description">
+            </div>
+
+            <div>
+              <input type="text" name="image_url" placeholder="Image Url">
+            </div>
+          <div>
+              <button type="submit" href="/api/maps/new">Create</button>
+              <a id="login-form__cancel" href="/">Cancel</a>
+          </div>
         <div id = maps>
+
+      </form>
 
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
