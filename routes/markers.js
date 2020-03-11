@@ -12,12 +12,12 @@ module.exports = db => {
     db.query(
       `SELECT * FROM maps
     JOIN pointers on pointers.map_id =maps.id
-    ORDER BY pointers.id;`
+    ORDER BY pointers.map_id;`
     )
       .then(data => {
-        const users = data.rows;
+        const markers = data.rows;
         res.send({
-          users
+          markers
         });
       })
       .catch(err => {

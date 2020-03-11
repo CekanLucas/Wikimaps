@@ -1,10 +1,7 @@
-// const db = require("../routes/maps");
-
 $(document).ready(function() {
   console.log("ready!");
 
   const createMapElement = function(users) {
-    let count = 3;
     for (let map of users) {
       $("#map-container").append(`
           <article class=map-grid>
@@ -18,7 +15,6 @@ $(document).ready(function() {
             <a class=map-option href="http://" title='Edit Map'><i class="fas fa-edit"></i></a>
           </article>
     `);
-      count++;
     }
   };
 
@@ -27,15 +23,27 @@ $(document).ready(function() {
     url: "/api/users"
   }).then(users => {
     createMapElement(users.users);
-    // RenderPointers();
-    //global object
     window.maps = {};
+    window.mapmarkers = {};
+    $.ajax({
+      method: "GET",
+      url: "/api/markers"
+    }).then(response => {
+      for (let marker of response.markers) {
+        // console.log(marker);
+        if (mapmarkers[marker.map_id]) mapmarkers[marker.map_id].push(marker);
+        else mapmarkers[marker.map_id] = [marker];
+      }
+      console.log(mapmarkers);
+    });
+
     for (let map of users.users) {
       window.maps[map.id] = {
         user_id: map.user_id,
         markers: []
       };
       mapMaker(map.id);
+      //alter mapMaker function to renderpointers for each map
     }
   });
 });
