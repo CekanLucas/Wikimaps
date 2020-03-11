@@ -75,20 +75,9 @@ $(document).on("submit", "#marker-form", function(evt) {
   }).then(data => {
     console.log(data);
   });
-
   // TODO: make api call to store marker info in databasr
   // TODO: find marker in window.maps, by using the mapid and the lat and long,
-  // // and then update with the information remove form
-  // createNewMarker(
-  //   user_id,
-  //   map_id,
-  //   title,
-  //   description,
-  //   image_url,
-  //   address,
-  //   latitude,
-  //   longitude
-  // );
+  // and then update with the information remove form
 });
 
 // let infowindow = new google.maps.InfoWindow({});
@@ -99,7 +88,6 @@ window.initMap = mapid => {
   console.log(document.getElementById(mapid));
   mapMaker("map");
   // mapMaker("map2");
-  // mapMaker("map4");
 };
 
 // helper function that generates user maps.

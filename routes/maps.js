@@ -130,66 +130,21 @@ module.exports = db => {
     res.send(`<h1> OK</h1>`);
   });
 
-  // const createNewMarker = function(
-  //   user_id,
-  //   map_id,
-  //   title,
-  //   description,
-  //   image_url,
-  //   address,
-  //   latitude,
-  //   longitude
-  // ) {
-  //   // 1
-  //   const queryParams = [
-  //     user_id,
-  //     map_id,
-  //     title,
-  //     description,
-  //     image_url,
-  //     address,
-  //     latitude,
-  //     longitude
-  //   ];
-  //   // 2
-  //   let queryString = ` INSERT INTO pointers (user_id, map_id, title, description, image_url, address, latitude, longitude) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) `;
-  //   //5
-  //   console.log(queryString, queryParams);
-  //   // 6
-  //   return db.query(queryString, queryParams).then(res => res.rows[0]);
-  // };
-
   router.post("/markers", (req, res) => {
     console.log("GOT HERE");
     let data = req.body;
     console.log(data);
-    let user_id = 1;
-    // createNewMarker(user_id, map_id, title, description, image_url, address, latitude, longitude);
+    createNewMarker(
+      data.user_id,
+      data.map_id,
+      data.title,
+      data.description,
+      data.image_url,
+      data.address,
+      data.latitude,
+      data.longitude
+    );
     res.send(`<h1> ${data} </h1>`);
   });
   return router;
-};
-
-const getAllMarkers = function(limit) {
-  //1
-  const queryParams = [];
-  // 2
-  let queryString = `
-      SELECT * FROM pointers
-      `;
-
-  // if (options.user_id) {
-  //   queryParams.push(options.user_id);
-  //   queryString += `AND user_id = $${queryParams.length} `;
-  // }
-
-  // 4
-  queryParams.push(limit);
-  queryString += `
-    LIMIT $${queryParams.length};
-    `;
-  //5
-  console.log(queryString, queryParams);
-  // 6
-  return db.query(queryString, queryParams).then(res => res.rows);
 };
