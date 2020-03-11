@@ -13,8 +13,8 @@ const placeMarker = function(location, map, mapid) {
     lat: marker.position.lat(),
     lng: marker.position.lng()
   });
-  // console.log(marker.position.lat());
-  // console.log(marker.position.lng());
+  console.log(marker.position.lat());
+  console.log(marker.position.lng());
   // console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
@@ -93,9 +93,9 @@ window.initMap = mapid => {
 // helper function that generates user maps.
 // needs to be refactored to generate all maps connected to currently logged in user
 const mapMaker = function(mapid, mapmarkers) {
-  const lhl = { lat: 43.6529, lng: -79.3849 };
+  const lhl = { lat: 43.78432041175625, lng: -79.60479333058197 };
   let map = new google.maps.Map(document.getElementById(mapid), {
-    zoom: 10,
+    zoom: 9,
     center: lhl
   });
 
@@ -131,14 +131,12 @@ const mapMaker = function(mapid, mapmarkers) {
   //   }
   // });
 
-  placeMarker({ lat: 43.80968735912084, lng: -79.5002564453125 }, map, mapid);
-
   // create a loop using all the markers and place marker
   placeMarker(lhl, map, mapid);
   // on click map event handler
   google.maps.event.addListener(map, "click", function(event) {
     console.log("click detected");
-    console.log(event.latLng);
+    //console.log(event.latLng);
     placeMarker(event.latLng, map, mapid);
   });
 };
