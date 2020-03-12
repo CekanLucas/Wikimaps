@@ -42,6 +42,7 @@ const usersRoutes = require("./routes/users");
 const mapsRoutes = require("./routes/maps");
 const widgetsRoutes = require("./routes/widgets");
 const markersRoutes = require("./routes/markers");
+const favRoutes = require("./routes/favMaps");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -49,26 +50,28 @@ app.use("/api/users", usersRoutes(db));
 app.use("/api/maps", mapsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/markers", markersRoutes(db));
+app.use("/api/favourites", favRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  // let query = `SELECT * FROM users;`;
-  // db.query(query)
-  //   .then(data => {
-  //     formHandling(req, res, data.rows);
-  //     return;
-  //   })
-  //   .catch(err => {
-  //     res.status(500).json({ error: err.message });
-  //   });
+  let query = `SELECT * FROM users;`;
+  db.query(query)
+    .then(data => {
+      formHandling(req, res, data.rows);
+      return;
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 app.post("/login", (req, res) => {
   // check if user and password field is filled in
-  console.log('Test', req.body)
+  console.log("Test", req.body);
   const loginEmail = req.body.email;
   const loginPass = req.body.loginPass;
   if (loginEmail === "" && loginPass === undefined) {
@@ -84,6 +87,7 @@ app.post("/login", (req, res) => {
   db.query(query)
     .then(data => {
       formHandling(req, res, data.rows);
+      console.log("hello");
       return;
     })
     .catch(err => {
@@ -91,11 +95,11 @@ app.post("/login", (req, res) => {
     });
 });
 app.post("/logout", (req, res) => {
-  console.log('logout')
-  res.clearCookie('email_validated');
-  res.clearCookie('pass_validated');
-  res.clearCookie('user_id');
-  res.send('cookies cleared')
+  console.log("logout");
+  res.clearCookie("email_validated");
+  res.clearCookie("pass_validated");
+  res.clearCookie("user_id");
+  res.send("cookies cleared");
 });
 
 app.post("/register", (req, res) => {

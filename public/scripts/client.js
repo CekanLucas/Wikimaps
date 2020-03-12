@@ -117,6 +117,6 @@ $(document).ready(() => {
 // $('#input-form').before('<i>Hello<i>')
 // Object { 0: form#input-form.form-control.form-control-lg.form-inline, length: 1 }
 /*
-<input type="color" id="head" name="head"
-           value="#e66465"></input> */
+  <input type="color" id="head" name="head"
+             value="#e66465"></input> */
 // https://developers.google.com/maps/documentation/javascript/styling
