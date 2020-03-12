@@ -17,7 +17,7 @@ $('#input-form').submit( e => {
     .then( (res) => {
       const name = () => JSON.stringify(res.name);
       console.log(name())
-      let text = `Logged in as ${name}:`
+      let text = `Logged in as ${res.name}:`
       console.log('1',text)
       if(res === 'email validated'){
         $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
@@ -25,7 +25,7 @@ $('#input-form').submit( e => {
         return;
       }
       console.log('2',text)
-      if(res.text === 'user is logged in'){
+      if(res.text === 'password validated'){
         console.log('3',text)
         $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide();
         $('#form-msg').text(text);
