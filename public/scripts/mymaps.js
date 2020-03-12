@@ -22,15 +22,18 @@ $(document).ready(function() {
     }
   };
 
+  getCookie = function(name) {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  };
   $("#usermaps").on("click", function() {
     $.ajax({
       method: "GET",
       url: "/api/maps/user"
     }).then(users => {
-      console.log("users before create map element:", users.maps);
-      createUserMapElement(users.maps, 4);
-      console.log("users after create map element:", users.maps);
-
+      // console.log("users before create map element:", users.maps);
+      // createUserMapElement(users.maps, getCookie("user_id"));
+      createUserMapElement(users.maps, Number(getCookie("user_id")));
       window.maps = {};
 
       $.ajax({

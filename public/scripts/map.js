@@ -13,9 +13,6 @@ const placeMarker = function(location, map, mapid) {
     lat: marker.position.lat(),
     lng: marker.position.lng()
   });
-  console.log(marker.position.lat());
-  console.log(marker.position.lng());
-  // console.log(window.maps);
 
   let infowindow = new google.maps.InfoWindow({
     content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
@@ -105,7 +102,7 @@ const mapMaker = function(mapid, mapmarkers) {
       // console.log(mapid);
       if (key == mapid) {
         for (let marker of mapmarkers[key]) {
-          console.log(marker);
+          // console.log(marker);
           let lat = Number(marker.latitude);
           let lng = Number(marker.longitude);
           placeMarker({ lat, lng }, map, mapid);
