@@ -12,6 +12,7 @@ $('#input-form').submit( e => {
     .then( (res) => {
 
       if(res === 'email validated'){
+        $('#form-msg').text('Enter Password:  ');
         $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
         $('#login-button').show(500);
         $('#logout-button').text('Back').show(500);
