@@ -98,7 +98,22 @@ article.map-grid a {
   text-align: center;
   z-index: 1000;
   position: absolute;
-  bottom: 50vh;
-  left: 40vw;
   color: white;
+  background-color: black;
+  background-image: url("https://www.transparenttextures.com/patterns/cartographer.png");
+  height: 100vh;
+  width: 100vw;
+  input, textarea {
+    display: block;
+    width: 100vw;
+  }
+  button, #create-map {
+    margin:none;
+  }
+  *{
+    margin:1em 0;
+  }
+  textarea{
+    height:30vh
+  }
 }

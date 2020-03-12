@@ -1,5 +1,20 @@
 $(document).ready(  () => {
 console.log('Form Ready')
+$('#nav-create-map').hide();
+
+//create map handling
+// $('#map-form').toggle();
+$('#create-map-cancel').click( e => {
+  e.preventDefault();
+  $('#create-map-div').toggle();
+})
+$('#create-map-submit').click( e => {
+  $('#create-map-div').toggle();
+})
+$('#nav-create-map').click( e => {
+  $('#create-map-div').toggle();
+})
+
 
 $('#input-form').submit( e => {
     e.preventDefault();
@@ -31,8 +46,9 @@ $('#input-form').submit( e => {
         $('#logout-button').text('Logout').show(500);
         $('#register-button').hide(500);
         $('.error-message').hide();
+        $('#nav-create-map').show(500);
         return '';
-      } else($('#logout-button'))
+      }
       return;
     })
     .catch(e => {

@@ -19,6 +19,22 @@
   <title>MapWiki</title>
 </head>
 <body>
+
+  <div id="create-map-div" style='display:none'>
+    <form id="map-form" action="/api/maps" method="POST" >
+      <h2 class=text-light>Create New Map</h2>
+      <input class=form-control-lg name="title" placeholder="Title" required>
+      <textarea class=form-control-sm name="description" rows=20 placeholder='Enter Description Here'></textarea>
+    <input class=form-control-sm type="text" id=create-map name="image_url" placeholder="Image Url">
+      <button class="btn btn-info btn-left btn-block" type="submit" href="/api/maps/new">Create</button>
+      <button id=create-map-cancel type=reset class="btn btn-info btn-right btn-block" >Cancel</button>
+    </form>
+  </div>
+
+
+
+
+
   <header class=text-white>
     <nav class="navbar navbar-expand-md navbar-dark">
       <a class="navbar-brand" href="/">MapWiki <i class="fas fa-globe"></i></a>
@@ -28,8 +44,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a id="usermaps" class="nav-item nav-link" >My Maps</a>
-          <a class="nav-item nav-link" href="/api/maps/new">Create New Map</a>
-          <a class="nav-item nav-link" href="/api/maps">Browse Maps</a>
+          <!-- "/api/maps/new" -->
+          <a class="nav-item nav-link" id=nav-create-map>Create New Map</a>
         </div>
       </div>
 
@@ -63,25 +79,12 @@
         </div>
         </div>
         <!-- Map Form -->
-        <form id="map-form" action="/api/maps" method="POST">
-          <p>Create New Map</p>
 
 
-<input name="title" placeholder="Title" required>
-<textarea name="description" id="" cols="30" rows="10" placeholder='enter description here'></textarea>
 
-<input type="text" name="description" placeholder="Description">
 
-<input type="text" name="image_url" placeholder="Image Url">
-<button class="btn btn-info btn-left" type="submit" href="/api/maps/new">Create</button>
+  <div id = maps>
 
-<a id="login-form__cancel" href="/">
-  <button class="btn btn-info btn-right" type="submit" href="/api/maps/new">Cancel</button>
-
-  </a>
-        <div id = maps>
-
-      </form>
 
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0-1dTUpgb4f7Za4f5vey93FaMvhr13yI&amp;callback=initMap"></script>
