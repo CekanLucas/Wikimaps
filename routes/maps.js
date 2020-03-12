@@ -106,7 +106,8 @@ module.exports = db => {
       // 6
       return db.query(queryString, queryParams).then(res => res.rows);
     };
-    getMapsByEmail(4, 10)
+    console.log("cookie is: ", req.cookies["user_id"]);
+    getMapsByEmail(Number(req.cookies["user_id"]), 10)
       .then(maps => {
         res.send({ maps }).catch(err => {
           res.status(500).json({ error: err.message });

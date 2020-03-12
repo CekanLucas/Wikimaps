@@ -68,7 +68,7 @@ app.get("/", (req, res) => {
 
 app.post("/login", (req, res) => {
   // check if user and password field is filled in
-  console.log('Test', req.body)
+  console.log("Test", req.body);
   const loginEmail = req.body.email;
   const loginPass = req.body.loginPass;
   if (loginEmail === "" && loginPass === undefined) {
@@ -84,6 +84,7 @@ app.post("/login", (req, res) => {
   db.query(query)
     .then(data => {
       formHandling(req, res, data.rows);
+      console.log("hello");
       return;
     })
     .catch(err => {
@@ -91,11 +92,11 @@ app.post("/login", (req, res) => {
     });
 });
 app.post("/logout", (req, res) => {
-  console.log('logout')
-  res.clearCookie('email_validated');
-  res.clearCookie('pass_validated');
-  res.clearCookie('user_id');
-  res.send('cookies cleared')
+  console.log("logout");
+  res.clearCookie("email_validated");
+  res.clearCookie("pass_validated");
+  res.clearCookie("user_id");
+  res.send("cookies cleared");
 });
 
 app.post("/register", (req, res) => {

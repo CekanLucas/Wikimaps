@@ -9,9 +9,11 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 
   window.maps[mapid].markers.push({
+
     userid: gmarker.user_id,
     lat: gmarker.position.lat(),
     lng: gmarker.position.lng()
+
   });
 
 

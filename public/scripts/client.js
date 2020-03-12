@@ -1,15 +1,28 @@
-$(document).ready(  () => {
-console.log('Form Ready')
 
-$('#input-form').submit( e => {
+$(document).ready(() => {
+  console.log("Form Ready");
+  // Start on state one when page load on nav form
+  // $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
+  // $('#form-msg').text('Enter Email:  ');
+
+  // $('#login-button').click( e => {
+  //   $('#input-form').trigger('submit');
+  // })
+
+
+  $("#input-form").submit(e => {
     e.preventDefault();
 
     $.ajax({
-      type: 'POST',
-      url: '/login',
-      data: {input :$('#input-form input').val()}
+      type: "POST",
+      url: "/login",
+      data: { input: $("#input-form input").val() }
     })
-    .then( (res) => {
+
+      .then(res => {
+        // let text = `Welcome ${res.name}:`
+
+
 
       if(res === 'email validated'){
         $('#form-msg').text('Enter Password:  ');
@@ -61,11 +74,15 @@ $('#logout-button').click( e => {
   })
 })
 
-//works bring user specific map back and front
-$('#map').css('z-index',5).css('filter','invert(1)')
-$('#map').css('z-index',-1000).css('filter','invert(1) blur(1.1px)')
-$('#input-form').submit()
 
+
+  //works bring user specific map back and front
+  $("#map")
+    .css("z-index", 5)
+    .css("filter", "invert(1)");
+  $("#map")
+    .css("z-index", -1000)
+    .css("filter", "invert(1) blur(1.1px)");
 });
 
 // ----- NOTES FOR LUCAS
