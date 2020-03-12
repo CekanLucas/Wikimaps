@@ -32,7 +32,7 @@ $('#input-form').submit( e => {
         $('#register-button').hide(500);
         $('.error-message').hide();
         return '';
-      } else($('#logout-button'))
+      }
       return;
     })
     .catch(e => {
@@ -55,6 +55,7 @@ $('#logout-button').click( e => {
     $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
     $('#form-msg').text('Enter Email:  ');
     $('#register-button').show(500);
+    $('#login-button').show(500);
     return;
   })
 })
@@ -62,6 +63,7 @@ $('#logout-button').click( e => {
 //works bring user specific map back and front
 $('#map').css('z-index',5).css('filter','invert(1)')
 $('#map').css('z-index',-1000).css('filter','invert(1) blur(1.1px)')
+$('#input-form').submit()
 
 });
 

@@ -55,15 +55,15 @@ app.use("/api/markers", markersRoutes(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  // let query = `SELECT * FROM users;`;
-  // db.query(query)
-  //   .then(data => {
-  //     formHandling(req, res, data.rows);
-  //     return;
-  //   })
-  //   .catch(err => {
-  //     res.status(500).json({ error: err.message });
-  //   });
+  let query = `SELECT * FROM users;`;
+  db.query(query)
+    .then(data => {
+      formHandling(req, res, data.rows);
+      return;
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 app.post("/login", (req, res) => {
