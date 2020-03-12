@@ -80,6 +80,13 @@ app.post("/login", (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+app.post("/logout", (req, res) => {
+  console.log('logout')
+  res.clearCookie('email_validated');
+  res.clearCookie('pass_validated');
+  res.clearCookie('user_id');
+  res.send('cookies cleared')
+});
 
 app.post("/register", (req, res) => {
   // check if user and password field is filled when registering

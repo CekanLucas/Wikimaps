@@ -13,7 +13,7 @@ const formHandling = (request, response, users) => {
   //State 1: ask for email
   if(!email && !pass){
     for(user of users){
-      if (request.body['email'] === user.email){
+      if (request.body.input === user.email){
         response.cookie('user_id' ,user.id);
         response.cookie('email_validated' , true);
         response.send('email validated')
@@ -29,16 +29,18 @@ const formHandling = (request, response, users) => {
       if (
         // need to make number to work
         Number(userID) === Number(user.id) &&
-        request.body['password'] === user.password
+        request.body.input === user.password
         ){
         response.cookie('pass_validated', 'true');
+        // response.send({text:'password validated',name:user.name});
         response.send('password validated');
         return;
       }
     }
     response.status(401).send('invalid password');
   } else{ //State 3: user logged in
-      response.send('user is logged in');
+      // response.send('user is logged in');
+      response.send({text:'password validated',name:user.name});
       return;
     }
 }

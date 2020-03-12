@@ -33,16 +33,16 @@
       </div>
 
 <!-- form msg -->
-        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
 
 <!-- input form -->
+  <b><span id=form-msg class='text-light'>Enter Email:</span></b>
     <form
       class='form-control form-control-lg form-inline'
       method=post action='/login'id='input-form'
       style="display:contents !important" name=usernameform>
         <input class=form-control name=email type="email" placeholder="example@email.com">
         <button class='btn btn-warning' id='login-button'>Login</button>
-      </form>
+    </form>
 
 <!-- register -->
     <form
@@ -51,6 +51,9 @@
       style="display:contents !important" name=usernameform>
         <button class='btn btn-warning' id=register-button>Register</button>
     </form>
+
+<!-- logout -->
+        <button class='btn btn-warning' id=logout-button>Logout</button>
       </nav>
     </header>
     <main>

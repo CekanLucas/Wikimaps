@@ -1,96 +1,63 @@
 $(document).ready(  () => {
-  console.log('Form Ready')
+console.log('Form Ready')
 
 
-  $('#login-button').click( e => {
-    console.log('Login button click')
-    $('#input-form').trigger('submit');
-  // $('#input-form').trigger('submit');
+$('#login-button').click( e => {
+  $('#input-form').trigger('submit');
 })
 
 $('#input-form').submit( e => {
     e.preventDefault();
-    console.log('submitinger')
 
     $.ajax({
       type: 'POST',
       url: '/login',
-      data: {key :$('#input-form input').val()}
+      data: {input :$('#input-form input').val()}
     })
     .then( (res) => {
-      console.log('Response')
-      $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********')
-      return res;
+      const name = () => JSON.stringify(res.name);
+      console.log(name())
+      let text = `Logged in as ${name}:`
+      console.log('1',text)
+      if(res === 'email validated'){
+        $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
+        $('#form-msg').text('Enter Password:');
+        return;
+      }
+      console.log('2',text)
+      if(res.text === 'user is logged in'){
+        console.log('3',text)
+        $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide();
+        $('#form-msg').text(text);
+        return '';
+      }
+      return;
     })
     .catch(e => {
       console.log('error')
-      console.log(e)
-
-      return;
+      console.log(e.responseText)
     })
   }
 )
+
+$('#logout-button').click( e => {
+  $.ajax({
+    type: 'POST',
+    url: '/logout',
+  })
+  .then( () => {
+    console.log('logout')
+    $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show()
+    $('#form-msg').text('Enter Email:');
+    return;
+  })
+})
 
 //works bring user specific map back and front
 $('#map').css('z-index',5).css('filter','invert(1)')
 $('#map').css('z-index',-1000).css('filter','invert(1) blur(1.1px)')
 
 });
-
-
-/* // ------------STATE 1---------------- ask for email
-// -- form msg --
-        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
-
-// -- input form --
-    <form
-      class='form-control form-control-lg form-inline'
-      method=post action='/login'id='input-form'
-      style="display:contents !important" name=usernameform>
-        <input class=form-control name=login-email type="email" placeholder="example@email.com">
-      </form>
-      <button class='btn btn-warning' id='login-button'>Login</button>
-
-// -- register --
-    <form
-      class='form-control form-control-lg form-inline'
-      action="/register" method=GET
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=register-button>Register</button>
-    </form>
-
-// ------------STATE 2---------------- ask for pass
-// -- form msg --
- Enter Password for&nbsp;<b><span class=text-light><%= users[userID].email %>&nbsp;&nbsp;&nbsp;</span></b></b>
-
-        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
-
-// -- input form --
-    <form
-      class='form-control form-control-lg form-inline'
-      method=post action='/login'id='input-form'
-      style="display:contents !important" name=usernameform>
-        <input class=form-control name=login-email type="email" placeholder="example@email.com">
-      </form>
-      <button class='btn btn-warning' id='login-button'>Login</button>
-
-// -- register --
-    <form
-      class='form-control form-control-lg form-inline'
-      action="/register" method=GET
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=register-button>Register</button>
-    </form>
-
-
- // ------------STATE 2---------------- Logged in as user
-          Logged in for:&nbsp;<b><span class=text-light><%= users[userID].email %>&nbsp;&nbsp;</span</b>
-      <form
-      class='form-control form-control-lg form-inline'
-      action="/logout" method=POST id=LoginForm
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning'>Logout</button>
-    </form> */
 
 // ----- NOTES FOR LUCAS
 //     $('#input-form').html()
