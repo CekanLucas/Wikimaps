@@ -45,6 +45,7 @@ $(document).ready(() => {
         $('#logout-button').text('Logout').show(500);
         $('#register-button').hide(500);
         $('.error-message').hide();
+        $('#nav-create-map').show(500);
         return '';
       }
       return;
