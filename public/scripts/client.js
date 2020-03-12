@@ -1,86 +1,106 @@
-$(document).ready(  () => {
-console.log('Form Ready')
-$('.nav-item').hide();
+$(document).ready(() => {
+  console.log("Form Ready");
+  $(".nav-item").hide();
 
-//create map handling
-// $('#map-form').toggle();
-$('#create-map-cancel').click( e => {
-  e.preventDefault();
-  $('#create-map-div').toggle();
-})
-$('#create-map-submit').click( e => {
-  $('#create-map-div').toggle();
-})
-$('#nav-create-map').click( e => {
-  $('#create-map-div').toggle();
-})
+  //create map handling
+  // $('#map-form').toggle();
+  $("#create-map-cancel").click(e => {
+    e.preventDefault();
+    $("#create-map-div").toggle();
+  });
+  $("#create-map-submit").click(e => {
+    $("#create-map-div").toggle();
+  });
+  $("#nav-create-map").click(e => {
+    $("#create-map-div").toggle();
+  });
 
-
-$('#input-form').submit( e => {
+  $("#input-form").submit(e => {
     e.preventDefault();
 
     $.ajax({
-      type: 'POST',
-      url: '/login',
-      data: {input :$('#input-form input').val()}
+      type: "POST",
+      url: "/login",
+      data: { input: $("#input-form input").val() }
     })
-    .then( (res) => {
-
-      if(res === 'email validated'){
-        $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
-        $('#login-button').show(500);
-        $('#logout-button').text('Back').show(500);
-        $('#register-button').hide(500);
-        $('.error-message').hide(500);
-        $('.nav-item').hide(500);
+      .then(res => {
+        if (res === "email validated") {
+          $("#input-form input")
+            .attr("name", "password")
+            .attr("type", "password")
+            .attr("placeholder", "********")
+            .val("");
+          $("#login-button").show(500);
+          $("#logout-button")
+            .text("Back")
+            .show(500);
+          $("#register-button").hide(500);
+          $(".error-message").hide(500);
+          $(".nav-item").hide(500);
+          return;
+        }
+        if (res.text === "password validated") {
+          const capitalName = res.name
+            .split("")
+            .map((el, i) => (i === 0 ? el.toUpperCase() : el))
+            .join("");
+          console.log(capitalName);
+          const html = `Welcome <span id="logged-name">${capitalName}   </span>`;
+          $("#input-form input")
+            .attr("name", "email")
+            .attr("type", "email")
+            .attr("placeholder", "example@email.com")
+            .val("")
+            .hide(500);
+          $("#form-msg").html(html);
+          $("#login-button").hide(500);
+          $("#logout-button")
+            .text("Logout")
+            .show(500);
+          $("#register-button").hide(500);
+          $(".error-message").hide();
+          $(".nav-item").show(500);
+          return "";
+        }
         return;
-      }
-      if(res.text === 'password validated'){
-        const capitalName = (res.name).split('').map(
-          (el, i) => i===0? el.toUpperCase() : el
-        ).join('');
-        console.log(capitalName)
-        const html = `Welcome <span id="logged-name">${capitalName}   </span>`
-        $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide(500);
-        $('#form-msg').html(html);
-        $('#login-button').hide(500);
-        $('#logout-button').text('Logout').show(500);
-        $('#register-button').hide(500);
-        $('.error-message').hide();
-        $('.nav-item').show(500);
-        return '';
-      }
+      })
+      .catch(e => {
+        console.log("error", e);
+        const errorMSG = e.responseText;
+        $(".error-message").hide();
+        $("#form-msg")
+          .before(`<span class='error-message text-danger'>${errorMSG} </span>`)
+          .show(500);
+      });
+  });
+
+  $("#logout-button").click(e => {
+    $.ajax({
+      type: "POST",
+      url: "/logout"
+    }).then(() => {
+      console.log("logout");
+      $(".error-message").hide();
+      $("#input-form input")
+        .attr("name", "email")
+        .attr("type", "email")
+        .attr("placeholder", "example@email.com")
+        .val("")
+        .show(500);
+      $("#form-msg").text("Enter Email:  ");
+      $("#register-button").show(500);
+      $(".nav-item").hide(500);
       return;
-    })
-    .catch(e => {
-      console.log('error', e)
-      const errorMSG = e.responseText;
-      $('.error-message').hide();
-       $('#form-msg').before(`<span class='error-message text-danger'>${errorMSG} </span>`).show(500)
-    })
-  }
-)
+    });
+  });
 
-$('#logout-button').click( e => {
-  $.ajax({
-    type: 'POST',
-    url: '/logout',
-  })
-  .then( () => {
-    console.log('logout')
-    $('.error-message').hide();
-    $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
-    $('#form-msg').text('Enter Email:  ');
-    $('#register-button').show(500);
-    $('.nav-item').hide(500);
-    return;
-  })
-})
-
-//works bring user specific map back and front
-$('#map').css('z-index',5).css('filter','invert(1)')
-$('#map').css('z-index',-1000).css('filter','invert(1) blur(1.1px)')
-
+  //works bring user specific map back and front
+  $("#map")
+    .css("z-index", 5)
+    .css("filter", "invert(1)");
+  $("#map")
+    .css("z-index", -1000)
+    .css("filter", "invert(1) blur(1.1px)");
 });
 
 // ----- NOTES FOR LUCAS
