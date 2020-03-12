@@ -1,10 +1,12 @@
 $(document).ready(  () => {
 console.log('Form Ready')
+// Start on state one when page load on nav form
+// $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
+// $('#form-msg').text('Enter Email:  ');
 
-
-$('#login-button').click( e => {
-  $('#input-form').trigger('submit');
-})
+// $('#login-button').click( e => {
+//   $('#input-form').trigger('submit');
+// })
 
 $('#input-form').submit( e => {
     e.preventDefault();
@@ -15,20 +17,27 @@ $('#input-form').submit( e => {
       data: {input :$('#input-form input').val()}
     })
     .then( (res) => {
-      const name = () => JSON.stringify(res.name);
-      console.log(name())
-      let text = `Logged in as ${res.name}:`
-      console.log('1',text)
+      // let text = `Welcome ${res.name}:`
+
       if(res === 'email validated'){
         $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
-        $('#form-msg').text('Enter Password:');
+        $('#input-form input').prepend(html)
+        $('#login-button').show(500);
+        $('#logout-button').text('Back').show(500);
+        $('#register-button').hide(500);
         return;
       }
-      console.log('2',text)
       if(res.text === 'password validated'){
-        console.log('3',text)
-        $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide();
-        $('#form-msg').text(text);
+        const capitalName = (res.name).split('').map(
+          (el, i) => i===0? el.toUpperCase() : el
+        ).join('');
+        console.log(capitalName)
+        const html = `Welcome <span id="logged-name">${capitalName}   </span>`
+        $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide(500);
+        $('#form-msg').html(html);
+        $('#login-button').hide(500);
+        $('#logout-button').text('Logout').show(500);
+        $('#register-button').hide(500);
         return '';
       }
       return;
@@ -47,8 +56,8 @@ $('#logout-button').click( e => {
   })
   .then( () => {
     console.log('logout')
-    $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show()
-    $('#form-msg').text('Enter Email:');
+    $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
+    $('#form-msg').text('Enter Email:  ');
     return;
   })
 })
