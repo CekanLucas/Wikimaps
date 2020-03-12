@@ -1,13 +1,6 @@
 $(document).ready(function() {
   console.log("ready!");
 
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/"
-  // }).then(res => {
-  //   res.render("my_maps.ejs");
-  // });
-
   const createUserMapElement = function(users, userid) {
     $("#map-container").empty();
     for (let map of users) {
@@ -46,18 +39,12 @@ $(document).ready(function() {
     }
   };
 
-  $.ajax({
-    method: "GET",
-    url: "/api/maps/user"
-  }).then(users => {
-    $("#map-container").empty();
-    $.ajax({
-      method: "GET",
-      url: "/api/users"
-    }).then(users => {
-      createUserMapElement(users.users, 6);
-    });
-  });
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/maps/user"
+  // }).then(users => {
+  //   $("#map-container").empty();
+  // });
 
   $.ajax({
     method: "GET",

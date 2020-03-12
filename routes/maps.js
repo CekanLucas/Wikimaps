@@ -73,6 +73,14 @@ module.exports = db => {
         console.error(e);
         res.send(e);
       });
+  });
+
+  router.get("/new", (req, res) => {
+    res.render("map_form", { foo: "test" });
+  });
+
+  router.get("/user", (req, res) => {
+    console.log("hello world");
 
     const getMapsByEmail = function(email, limit) {
       const queryParams = [];
@@ -97,14 +105,16 @@ module.exports = db => {
       // 6
       return db.query(queryString, queryParams).then(res => res.rows);
     };
-  });
-
-  router.get("/new", (req, res) => {
-    res.render("map_form", { foo: "test" });
-  });
-
-  router.get("/user", (req, res) => {
-    res.render("my_maps");
+    getMapsByEmail(1, 10)
+      .then(maps => {
+        res.send({ maps }).catch(err => {
+          res.status(500).json({ error: err.message });
+        });
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e);
+      });
   });
 
   const createNewMap = function(
