@@ -26,6 +26,7 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 };
 
+console.log("cookie name  ", document.cookie);
 const deleteMarkerData = marker_id => {
   console.log("maker_id: ", marker_id);
   $.ajax({
@@ -60,8 +61,13 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <p><b>${existingMarker.image_url}</b>
         </div>
         <div>
-        <button id="delete-btn" onclick="deleteMarkerData(${existingMarker.id})">Delete</button>
-        <button id="edit-btn" onclick="editMarkerData(${existingMarker.id})">Edit</button>
+        ${
+          document.cookie
+            ? `<button id="delete-btn" onclick="deleteMarkerData(${existingMarker.id})">Delete</button>
+          <button id="edit-btn" onclick="editMarkerData(${existingMarker.id})">Edit</button>`
+            : ""
+        }
+
 
         </div>
         </div>`
@@ -70,7 +76,7 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
     return new google.maps.InfoWindow({
       content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
         <p>Create New Marker</p>
-        <div>)
+        <div>
           <input name="title" placeholder="Title" />
         </div>
 
@@ -156,11 +162,13 @@ const mapMaker = function(mapid, mapmarkers) {
   }
 
   // create a loop using all the markers and place marker
-  placeMarker(lhl, map, mapid);
+  // placeMarker(lhl, map, mapid);
   // on click map event handler
   google.maps.event.addListener(map, "click", function(event) {
     console.log("click detected");
     //console.log(event.latLng);
-    placeMarker(event.latLng, map, mapid);
+    if (document.cookie) {
+      placeMarker(event.latLng, map, mapid);
+    }
   });
 };
