@@ -1,96 +1,72 @@
 $(document).ready(  () => {
-  console.log('Form Ready')
+console.log('Form Ready')
+// Start on state one when page load on nav form
+// $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
+// $('#form-msg').text('Enter Email:  ');
 
+// $('#login-button').click( e => {
+//   $('#input-form').trigger('submit');
+// })
 
-  $('#login-button').click( e => {
-    console.log('Login button click')
-    $('#input-form').trigger('submit');
-  // $('#input-form').trigger('submit');
-})
+$('#input-form').submit( e => {
+    e.preventDefault();
 
-$('#input-form').submit(
-  e => {
-    // e.preventDefault();
-    console.log('submitinger')
-     return $.ajax({
+    $.ajax({
       type: 'POST',
       url: '/login',
+      data: {input :$('#input-form input').val()}
     })
     .then( (res) => {
-      console.log('Response')
-      console.log([res])
-      console.log(a, b)
+      // let text = `Welcome ${res.name}:`
+
+      if(res === 'email validated'){
+        $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
+        $('#input-form input').prepend(html)
+        $('#login-button').show(500);
+        $('#logout-button').text('Back').show(500);
+        $('#register-button').hide(500);
+        return;
+      }
+      if(res.text === 'password validated'){
+        const capitalName = (res.name).split('').map(
+          (el, i) => i===0? el.toUpperCase() : el
+        ).join('');
+        console.log(capitalName)
+        const html = `Welcome <span id="logged-name">${capitalName}   </span>`
+        $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').hide(500);
+        $('#form-msg').html(html);
+        $('#login-button').hide(500);
+        $('#logout-button').text('Logout').show(500);
+        $('#register-button').hide(500);
+        return '';
+      }
       return;
     })
     .catch(e => {
       console.log('error')
-      console.log(e)
-
-      return;
+      console.log(e.responseText)
     })
   }
 )
+
+$('#logout-button').click( e => {
+  $.ajax({
+    type: 'POST',
+    url: '/logout',
+  })
+  .then( () => {
+    console.log('logout')
+    $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
+    $('#form-msg').text('Enter Email:  ');
+    return;
+  })
+})
 
 //works bring user specific map back and front
 $('#map').css('z-index',5).css('filter','invert(1)')
 $('#map').css('z-index',-1000).css('filter','invert(1) blur(1.1px)')
 
 });
-
-
-/* // ------------STATE 1---------------- ask for email
-// -- form msg --
-        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
-
-// -- input form --
-    <form
-      class='form-control form-control-lg form-inline'
-      method=post action='/login'id='input-form'
-      style="display:contents !important" name=usernameform>
-        <input class=form-control name=login-email type="email" placeholder="example@email.com">
-      </form>
-      <button class='btn btn-warning' id='login-button'>Login</button>
-
-// -- register --
-    <form
-      class='form-control form-control-lg form-inline'
-      action="/register" method=GET
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=register-button>Register</button>
-    </form>
-
-// ------------STATE 2---------------- ask for pass
-// -- form msg --
- Enter Password for&nbsp;<b><span class=text-light><%= users[userID].email %>&nbsp;&nbsp;&nbsp;</span></b></b>
-
-        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span></b>
-
-// -- input form --
-    <form
-      class='form-control form-control-lg form-inline'
-      method=post action='/login'id='input-form'
-      style="display:contents !important" name=usernameform>
-        <input class=form-control name=login-email type="email" placeholder="example@email.com">
-      </form>
-      <button class='btn btn-warning' id='login-button'>Login</button>
-
-// -- register --
-    <form
-      class='form-control form-control-lg form-inline'
-      action="/register" method=GET
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning' id=register-button>Register</button>
-    </form>
-
-
- // ------------STATE 2---------------- Logged in as user
-          Logged in for:&nbsp;<b><span class=text-light><%= users[userID].email %>&nbsp;&nbsp;</span</b>
-      <form
-      class='form-control form-control-lg form-inline'
-      action="/logout" method=POST id=LoginForm
-      style="display:contents !important" name=usernameform>
-        <button class='btn btn-warning'>Logout</button>
-    </form> */
 
 // ----- NOTES FOR LUCAS
 //     $('#input-form').html()

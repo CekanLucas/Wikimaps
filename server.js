@@ -54,11 +54,21 @@ app.use("/api/markers", markersRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  // let query = `SELECT * FROM users;`;
+  // db.query(query)
+  //   .then(data => {
+  //     formHandling(req, res, data.rows);
+  //     return;
+  //   })
+  //   .catch(err => {
+  //     res.status(500).json({ error: err.message });
+  //   });
+});
 
 app.post("/login", (req, res) => {
   // check if user and password field is filled in
-  console.log(req.body)
+  console.log('Test', req.body)
   const loginEmail = req.body.email;
   const loginPass = req.body.loginPass;
   if (loginEmail === "" && loginPass === undefined) {
@@ -79,6 +89,13 @@ app.post("/login", (req, res) => {
     .catch(err => {
       res.status(500).json({ error: err.message });
     });
+});
+app.post("/logout", (req, res) => {
+  console.log('logout')
+  res.clearCookie('email_validated');
+  res.clearCookie('pass_validated');
+  res.clearCookie('user_id');
+  res.send('cookies cleared')
 });
 
 app.post("/register", (req, res) => {

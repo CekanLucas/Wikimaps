@@ -10,7 +10,6 @@
     <script src="https://kit.fontawesome.com/90d60d73c6.js" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/mymaps.js"></script>
     <script src="/scripts/client.js"></script>
     <script src="/scripts/map.js"></script>
@@ -27,21 +26,23 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a id="usermaps" class="nav-item nav-link" >My Maps</a>
+          <a class="nav-item nav-link" href="/api/maps/user">My Maps</a>
           <a class="nav-item nav-link" href="/api/maps/new">Create New Map</a>
           <a class="nav-item nav-link" href="/api/maps">Browse Maps</a>
         </div>
       </div>
 
+<!-- form msg -->
+        <b><span id='form-msg text-light'>Enter Email:&nbsp;&nbsp;&nbsp;&nbsp;</span</b>
+
 <!-- input form -->
-  <b><span id=form-msg class='text-light'>Enter Email:</span></b>
     <form
       class='form-control form-control-lg form-inline'
       method=post action='/login'id='input-form'
       style="display:contents !important" name=usernameform>
         <input class=form-control name=email type="email" placeholder="example@email.com">
         <button class='btn btn-warning' id='login-button'>Login</button>
-    </form>
+      </form>
 
 <!-- register -->
     <form
@@ -50,9 +51,6 @@
       style="display:contents !important" name=usernameform>
         <button class='btn btn-warning' id=register-button>Register</button>
     </form>
-
-<!-- logout -->
-        <button class='btn btn-warning' style='display:inline' id=logout-button>Logout</button>
       </nav>
     </header>
     <main>
@@ -93,3 +91,4 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+
