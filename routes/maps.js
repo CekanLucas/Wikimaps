@@ -103,6 +103,10 @@ module.exports = db => {
     res.render("map_form", { foo: "test" });
   });
 
+  router.get("/user", (req, res) => {
+    res.render("my_maps");
+  });
+
   const createNewMap = function(
     user_id,
     title,
