@@ -162,5 +162,6 @@ module.exports = db => {
     );
     res.send(`<h1> ${data} </h1>`);
   });
+
   return router;
 };
