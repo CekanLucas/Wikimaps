@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
   console.log("Form Ready");
   // Start on state one when page load on nav form
@@ -8,6 +9,7 @@ $(document).ready(() => {
   //   $('#input-form').trigger('submit');
   // })
 
+
   $("#input-form").submit(e => {
     e.preventDefault();
 
@@ -16,8 +18,10 @@ $(document).ready(() => {
       url: "/login",
       data: { input: $("#input-form input").val() }
     })
+
       .then(res => {
         // let text = `Welcome ${res.name}:`
+
 
 
       if(res === 'email validated'){
@@ -47,7 +51,6 @@ $(document).ready(() => {
     .catch(e => {
       console.log('error', e)
       const errorMSG = e.responseText;
-      console.log(errorMSG)
       $('.error-message').hide();
        $('#form-msg').before(`<span class='error-message text-danger'>${errorMSG} </span>`).show(500)
     })
@@ -65,26 +68,12 @@ $('#logout-button').click( e => {
     $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
     $('#form-msg').text('Enter Email:  ');
     $('#register-button').show(500);
+    $('#login-button').show(500);
     return;
   })
 })
 
-  $("#logout-button").click(e => {
-    $.ajax({
-      type: "POST",
-      url: "/logout"
-    }).then(() => {
-      console.log("logout");
-      $("#input-form input")
-        .attr("name", "email")
-        .attr("type", "email")
-        .attr("placeholder", "example@email.com")
-        .val("")
-        .show(500);
-      $("#form-msg").text("Enter Email:  ");
-      return;
-    });
-  });
+
 
   //works bring user specific map back and front
   $("#map")
