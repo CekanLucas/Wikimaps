@@ -86,7 +86,8 @@ module.exports = db => {
       const queryParams = [];
       // 2
       let queryString = `
-          SELECT * FROM maps
+          SELECT * FROM users
+          JOIN maps on maps.user_id = users.id
           WHERE true
           `;
 
@@ -105,7 +106,7 @@ module.exports = db => {
       // 6
       return db.query(queryString, queryParams).then(res => res.rows);
     };
-    getMapsByEmail(1, 10)
+    getMapsByEmail(4, 10)
       .then(maps => {
         res.send({ maps }).catch(err => {
           res.status(500).json({ error: err.message });
