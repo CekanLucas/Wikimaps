@@ -14,7 +14,6 @@ const placeMarker = function(location, map, mapid, existingMarker) {
     lng: gmarker.position.lng()
   });
 
-
   let popover = renderMarkerPopover(gmarker, existingMarker, mapid);
 
   gmarker.addListener("click", function(event) {
@@ -22,6 +21,13 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 };
 
+const deleteMarkerData = marker_id => {
+  console.log("maker_id: ", marker_id);
+  $.ajax({
+    method: "POST",
+    url: `/api/markers/delete/${marker_id}`
+  });
+};
 const renderMarkerPopover = (marker, existingMarker, mapid) => {
   if (existingMarker) {
     console.log(existingMarker);
@@ -40,13 +46,16 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <div>
         <p><b>${existingMarker.image_url}</b>
         </div>
+        <div>
+        <button id="delete-btn" onclick="deleteMarkerData(${existingMarker.id})">Delete</button>
+        </div>
         </div>`
     });
   } else {
     return new google.maps.InfoWindow({
       content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
         <p>Create New Marker</p>
-        <div>
+        <div>)
           <input name="title" placeholder="Title" />
         </div>
 
@@ -130,7 +139,6 @@ const mapMaker = function(mapid, mapmarkers) {
       }
     }
   }
-
 
   // create a loop using all the markers and place marker
   placeMarker(lhl, map, mapid);

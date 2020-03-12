@@ -23,6 +23,10 @@ module.exports = db => {
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
+    router.post("/delete/:id", (req, res) => {
+      console.log("server check ", req.params.id);
+      return db.query(`DELETE FROM pointers WHERE id = $1`, [req.params.id]);
+    });
   });
   return router;
 };
