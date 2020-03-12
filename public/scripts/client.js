@@ -1,6 +1,6 @@
 $(document).ready(  () => {
 console.log('Form Ready')
-$('#nav-create-map').hide();
+$('.nav-item').hide();
 
 //create map handling
 // $('#map-form').toggle();
@@ -31,7 +31,8 @@ $('#input-form').submit( e => {
         $('#login-button').show(500);
         $('#logout-button').text('Back').show(500);
         $('#register-button').hide(500);
-        $('.error-message').hide();
+        $('.error-message').hide(500);
+        $('.nav-item').hide(500);
         return;
       }
       if(res.text === 'password validated'){
@@ -46,7 +47,7 @@ $('#input-form').submit( e => {
         $('#logout-button').text('Logout').show(500);
         $('#register-button').hide(500);
         $('.error-message').hide();
-        $('#nav-create-map').show(500);
+        $('.nav-item').show(500);
         return '';
       }
       return;
@@ -71,6 +72,7 @@ $('#logout-button').click( e => {
     $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
     $('#form-msg').text('Enter Email:  ');
     $('#register-button').show(500);
+    $('.nav-item').hide(500);
     return;
   })
 })
