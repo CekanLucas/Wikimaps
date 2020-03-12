@@ -18,12 +18,6 @@ $(document).ready(function() {
     }
   };
 
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/maps/user"
-  // }).then(users => {
-  //   $("#map-container").empty();
-  // });
 
   $.ajax({
     method: "GET",
@@ -31,7 +25,7 @@ $(document).ready(function() {
   }).then(users => {
     createMapElement(users.users);
     window.maps = {};
-    mapmarkers = {};
+    window.mapmarkers = {};
 
     $.ajax({
       method: "GET",
@@ -60,7 +54,7 @@ $(document).ready(function() {
         markers: []
       };
       let randHue = Math.random() * 360;
-      mapMaker(map.id);
+      mapMaker(map.id, mapmarkers);
       //alter mapMaker function to renderpointers for each map
       $(`#${map.id}`).css(
         "filter",

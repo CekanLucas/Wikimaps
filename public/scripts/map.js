@@ -1,6 +1,6 @@
 //helper function that generates new map marker on click event
-const placeMarker = function(location, map, mapid) {
-  let marker = new google.maps.Marker({
+const placeMarker = function(location, map, mapid, existingMarker) {
+  let gmarker = new google.maps.Marker({
     position: location,
     map: map,
     draggable: true,
@@ -9,45 +9,73 @@ const placeMarker = function(location, map, mapid) {
   });
 
   window.maps[mapid].markers.push({
-    userid: marker.user_id,
-    lat: marker.position.lat(),
-    lng: marker.position.lng()
+
+    userid: gmarker.user_id,
+    lat: gmarker.position.lat(),
+    lng: gmarker.position.lng()
+
   });
 
-  let infowindow = new google.maps.InfoWindow({
-    content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
-      <p>Create New Marker</p>
-      <div>
-        <input name="title" placeholder="Title" />
-      </div>
 
-      <div>
-        <input type="text" name="description" placeholder="Description" />
-      </div>
+  let popover = renderMarkerPopover(gmarker, existingMarker, mapid);
 
-      <div>
-        <input type="text" name="address" placeholder="Address" />
-      </div>
-
-      <div>
-        <input type="text" name="image_url" placeholder="Image Url" />
-      </div>
-
-      <input type="hidden" name="user_id" value="1" />
-      <input type="hidden" name="mapid" value="${mapid}" />
-      <input type="hidden" name="lat" value="${marker.position.lat()}" />
-      <input type="hidden" name="lng" value="${marker.position.lng()}" />
-      <div>
-        <button type="submit" href="/api/maps/markers">Create</button>
-        <a id="login-form__cancel" href="/">Cancel</a>
-      </div>
-    </form>
-      `
+  gmarker.addListener("click", function(event) {
+    popover.open(map, gmarker);
   });
+};
 
-  marker.addListener("click", function() {
-    infowindow.open(map, marker);
-  });
+const renderMarkerPopover = (marker, existingMarker, mapid) => {
+  if (existingMarker) {
+    console.log(existingMarker);
+    return new google.maps.InfoWindow({
+      content: `<div id="content">
+        <div id="siteNotice">
+        </div>
+        <h1 id="firstHeading" class="firstHeading">${existingMarker.title}</h1>
+        <div id="bodyContent">
+        <div>
+        <p><b>${existingMarker.description}</b>
+        </div>
+        <div>
+        <p><b>${existingMarker.address}</b>
+        </div>
+        <div>
+        <p><b>${existingMarker.image_url}</b>
+        </div>
+        </div>`
+    });
+  } else {
+    return new google.maps.InfoWindow({
+      content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
+        <p>Create New Marker</p>
+        <div>
+          <input name="title" placeholder="Title" />
+        </div>
+
+        <div>
+          <input type="text" name="description" placeholder="Description" />
+        </div>
+
+        <div>
+          <input type="text" name="address" placeholder="Address" />
+        </div>
+
+        <div>
+          <input type="text" name="image_url" placeholder="Image Url" />
+        </div>
+
+        <input type="hidden" name="user_id" value="1" />
+        <input type="hidden" name="mapid" value="${mapid}" />
+        <input type="hidden" name="lat" value="${marker.position.lat()}" />
+        <input type="hidden" name="lng" value="${marker.position.lng()}" />
+        <div>
+          <button type="submit" href="/api/maps/markers">Create</button>
+          <a id="login-form__cancel" href="/">Cancel</a>
+        </div>
+      </form>
+        `
+    });
+  }
 };
 
 $(document).on("submit", "#marker-form", function(evt) {
@@ -72,19 +100,13 @@ $(document).on("submit", "#marker-form", function(evt) {
   }).then(data => {
     console.log(data);
   });
-  // TODO: make api call to store marker info in databasr
-  // TODO: find marker in window.maps, by using the mapid and the lat and long,
-  // and then update with the information remove form
 });
-
-// let infowindow = new google.maps.InfoWindow({});
 
 // Initialize and add the map
 window.initMap = mapid => {
   console.log(mapid);
   console.log(document.getElementById(mapid));
   mapMaker("map");
-  // mapMaker("map2");
 };
 
 // helper function that generates user maps.
@@ -105,28 +127,12 @@ const mapMaker = function(mapid, mapmarkers) {
           // console.log(marker);
           let lat = Number(marker.latitude);
           let lng = Number(marker.longitude);
-          placeMarker({ lat, lng }, map, mapid);
+          placeMarker({ lat, lng }, map, mapid, marker);
         }
       }
     }
   }
 
-  // return Object.keys(mapmarkers).forEach(map => {
-  //   console.log("map: ", map);
-
-  //   //cloops through object will all markers and enters if loop when mapid matches the mapiid in the mapmarkers object
-  //   if (map === mapid) {
-  //     //after selecting the write mapid we can loop through the array of markers
-  //     for (let marker of mapmarkers.map) {
-  //       // for each long
-  //       placeMarker(
-  //         { lat: marker.latitude, lng: marker.longitude },
-  //         map,
-  //         mapid
-  //       );
-  //     }
-  //   }
-  // });
 
   // create a loop using all the markers and place marker
   placeMarker(lhl, map, mapid);
@@ -137,5 +143,3 @@ const mapMaker = function(mapid, mapmarkers) {
     placeMarker(event.latLng, map, mapid);
   });
 };
-
-// google.maps.event.addDomListener(window, "load", initMap);
