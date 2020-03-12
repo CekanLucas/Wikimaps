@@ -23,6 +23,21 @@ module.exports = db => {
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
+    router.post("/delete/:id", (req, res) => {
+      console.log("server check ", req.params.id);
+      return db.query(`DELETE FROM pointers WHERE id = $1`, [req.params.id]);
+    });
+
+    // router.post("/edit/:id", (req, res) => {
+    //   console.log("server check ", req.params.id);
+    //   return db.query(
+    //     `
+    //   DELETE FROM pointers WHERE id = $1
+    //   INSERT INTO pointers (user_id, map_id, title, description, image_url, address, latitude, longitude) VALUES ($2,$3,$4,$5,$6,$7,$8)
+    //   `,
+    //     [req.params.id,]
+    //   );
+    // });
   });
   return router;
 };

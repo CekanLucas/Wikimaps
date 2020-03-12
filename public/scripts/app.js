@@ -8,7 +8,7 @@ $(document).ready(function() {
         <div id="${map.id}" class='map map-item' style='width: 100%; height: 100%;'></div>
         <h3 class=map-name title='view map'>${map.title}</h3>
               <span class=user-handle title="go to user's maps"> ${map.email} <i class="fas fa-atlas"></i></span><br>
-              <a class=map-option href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
+              <a class="map-option fav" data-map-id="${map.id}" href="http://" title='Favourite Map'><i class="fas fa-heart"></i></a>
               <a class=map-option href="http://" title='Delete Map'><i class="fas fa-times"></i></a>
               <a class=map-option href="http://" title='Add pins from Map'><i class="fas fa-map-marked"></i></a>
               <a class=map-option href="http://" title='Remove Pins from Map'><i class="far fa-map"></i></a>
@@ -17,7 +17,6 @@ $(document).ready(function() {
               `);
     }
   };
-
 
   $.ajax({
     method: "GET",
