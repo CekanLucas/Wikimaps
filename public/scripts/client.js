@@ -21,10 +21,10 @@ $('#input-form').submit( e => {
 
       if(res === 'email validated'){
         $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
-        $('#input-form input').prepend(html)
         $('#login-button').show(500);
         $('#logout-button').text('Back').show(500);
         $('#register-button').hide(500);
+        $('.error-message').hide();
         return;
       }
       if(res.text === 'password validated'){
@@ -38,13 +38,17 @@ $('#input-form').submit( e => {
         $('#login-button').hide(500);
         $('#logout-button').text('Logout').show(500);
         $('#register-button').hide(500);
+        $('.error-message').hide();
         return '';
       }
       return;
     })
     .catch(e => {
-      console.log('error')
-      console.log(e.responseText)
+      console.log('error', e)
+      const errorMSG = e.responseText;
+      console.log(errorMSG)
+      $('.error-message').hide();
+       $('#form-msg').before(`<span class='error-message text-danger'>${errorMSG} </span>`).show(500)
     })
   }
 )
@@ -56,8 +60,10 @@ $('#logout-button').click( e => {
   })
   .then( () => {
     console.log('logout')
+    $('.error-message').hide();
     $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
     $('#form-msg').text('Enter Email:  ');
+    $('#register-button').show(500);
     return;
   })
 })
