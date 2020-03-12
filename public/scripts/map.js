@@ -9,17 +9,20 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 
   window.maps[mapid].markers.push({
-
     userid: gmarker.user_id,
     lat: gmarker.position.lat(),
     lng: gmarker.position.lng()
-
   });
 
   let popover = renderMarkerPopover(gmarker, existingMarker, mapid);
 
   gmarker.addListener("click", function(event) {
     popover.open(map, gmarker);
+  });
+  gmarker.addListener("dblclick", function(event) {
+    if (!existingMarker) {
+      gmarker.setMap(null);
+    }
   });
 };
 
@@ -29,7 +32,15 @@ const deleteMarkerData = marker_id => {
     method: "POST",
     url: `/api/markers/delete/${marker_id}`
   });
+
+  // const editMarkerData = marker_id => {
+  //   console.log("maker_id: ", marker_id);
+  //   $.ajax({
+  //     method: "POST",
+  //     url: `/api/markers/edit/${marker_id}`
+  //   });
 };
+
 const renderMarkerPopover = (marker, existingMarker, mapid) => {
   if (existingMarker) {
     console.log(existingMarker);
@@ -50,6 +61,8 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         </div>
         <div>
         <button id="delete-btn" onclick="deleteMarkerData(${existingMarker.id})">Delete</button>
+        <button id="edit-btn" onclick="editMarkerData(${existingMarker.id})">Edit</button>
+
         </div>
         </div>`
     });
