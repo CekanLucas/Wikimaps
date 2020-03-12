@@ -30,7 +30,7 @@ module.exports = db => {
       `SELECT * FROM users
     JOIN maps on maps.user_id =users.id
     ORDER BY maps.id DESC
-    LIMIT 5;`
+    Limit 5;`
     )
       .then(data => {
         const users = data.rows;
