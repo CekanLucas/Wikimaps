@@ -1,12 +1,5 @@
 $(document).ready(  () => {
 console.log('Form Ready')
-// Start on state one when page load on nav form
-// $('#input-form input').attr('name','email').attr('type','email').attr('placeholder','example@email.com').val('').show(500)
-// $('#form-msg').text('Enter Email:  ');
-
-// $('#login-button').click( e => {
-//   $('#input-form').trigger('submit');
-// })
 
 $('#input-form').submit( e => {
     e.preventDefault();
@@ -17,7 +10,6 @@ $('#input-form').submit( e => {
       data: {input :$('#input-form input').val()}
     })
     .then( (res) => {
-      // let text = `Welcome ${res.name}:`
 
       if(res === 'email validated'){
         $('#input-form input').attr('name','password').attr('type','password').attr('placeholder','********').val('');
@@ -40,13 +32,12 @@ $('#input-form').submit( e => {
         $('#register-button').hide(500);
         $('.error-message').hide();
         return '';
-      }
+      } else($('#logout-button'))
       return;
     })
     .catch(e => {
       console.log('error', e)
       const errorMSG = e.responseText;
-      console.log(errorMSG)
       $('.error-message').hide();
        $('#form-msg').before(`<span class='error-message text-danger'>${errorMSG} </span>`).show(500)
     })
