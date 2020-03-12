@@ -67,8 +67,11 @@ nav {
     z-index: 1;
     border: 3px solid #fff;
     border-radius: 15px;
-    // filter: invert(0.7) sepia(1) hue-rotate(122.7deg);
+    filter: invert(0.7) hue-rotate(122.7deg) contrast(2.4);
   }
+  // .map-item{
+  //   filter: invert(0.7) sepia(1) hue-rotate(122.7deg);
+  // }
   a{
     display: inline-block;
     margin-top: 1em;
