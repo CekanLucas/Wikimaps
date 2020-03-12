@@ -4,17 +4,10 @@
 INSERT INTO users (name,email,password) VALUES ('asma' , 'asma@example.com', 'password');
 INSERT INTO users (name,email,password) VALUES ('rahul' , 'rahul@example.com', 'password');
 INSERT INTO users (name,email,password) VALUES ('lucas' , 'lucas@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('raho' , 'raho@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('suhur' , 'suhur@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('anisa' , 'anisa@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('najib' , 'najib@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('noah' , 'noah@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('david' , 'david@example.com', 'password');
-INSERT INTO users (name,email,password) VALUES ('luba' , 'luba@example.com', 'password');
 
 --            MAPS                  --
-INSERT INTO maps (user_id, title, description, image_url, active) VALUES (1,'AsmaFoodMap', 'a list of all my fav food spots', 'https://picsum.photos/id/106/367/267', true);
-INSERT INTO maps (user_id, title, description, image_url, active) VALUES (2,'RahulFoodMap', 'a list of all my fav food spots', 'https://i.picsum.photos/id/0/5616/3744.jpg', true);
+INSERT INTO maps (user_id, title, description, image_url, active) VALUES (1,"Asma's Favourite Food Spots", 'Here is a list of all my favourite food spots', 'https://picsum.photos/id/106/367/267', true);
+INSERT INTO maps (user_id, title, description, image_url, active) VALUES (2,"Asma's Favourite Hair Salons", 'Here is a list of all my favourite hair salons', 'https://i.picsum.photos/id/0/5616/3744.jpg', true);
 INSERT INTO maps (user_id, title, description, image_url, active) VALUES (3,'LucasFoodMap', 'a list of all my fav food spots', 'https://picsum.photos/id/1/367/267', true);
 INSERT INTO maps (user_id, title, description, image_url, active) VALUES (4,'RahoFoodMap', 'a list of all my fav food spots', 'https://picsum.photos/id/1010/367/267', true);
 INSERT INTO maps (user_id, title, description, image_url, active) VALUES (5,'SuhurFoodMap', 'a list of all my fav food spots', 'https://picsum.photos/id/1033/367/267', true);
