@@ -33,8 +33,8 @@ $(document).ready(() => {
             .val("");
           $("#login-button").show(500);
           $("#logout-button")
-            .addClass('btn-warning')
-            .removeClass('btn-dark')
+            .addClass("btn-warning")
+            .removeClass("btn-dark")
             .text("Back")
             .show(500);
           $("#register-button").hide(500);
@@ -94,7 +94,9 @@ $(document).ready(() => {
       $("#register-button").show(500);
       $(".nav-item").hide(500);
       $("#login-button").show(500);
-      $("#logout-button").addClass('btn-dark').removeClass('btn-warning');
+      $("#logout-button")
+        .addClass("btn-dark")
+        .removeClass("btn-warning");
       return;
     });
   });
