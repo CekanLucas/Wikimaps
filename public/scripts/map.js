@@ -43,6 +43,10 @@ const deleteMarkerData = marker_id => {
 };
 
 const renderMarkerPopover = (marker, existingMarker, mapid) => {
+  getCookie = function(name) {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  };
   if (existingMarker) {
     // console.log(existingMarker);
     return new google.maps.InfoWindow({
@@ -71,47 +75,50 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         </div>
         <div>
         ${
-          document.cookie
+          getCookie("user_id")
             ? `<button id="delete-btn" onclick="deleteMarkerData(${existingMarker.id})">Delete</button>
           <button id="edit-btn" onclick="editMarkerData(${existingMarker.id})">Edit</button>`
             : ""
         }
 
-
         </div>
         </div>`
     });
   } else {
-    return new google.maps.InfoWindow({
-      content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
-        <p>Create New Marker</p>
-        <div>
-          <input name="title" placeholder="Title" />
-        </div>
+    //if cookie exists
 
-        <div>
-          <input type="text" name="description" placeholder="Description" />
-        </div>
+    if (getCookie("user_id")) {
+      return new google.maps.InfoWindow({
+        content: `<form id="marker-form" action="/api/maps/markers" method = "POST">
+          <p>Create New Marker</p>
+          <div>
+            <input name="title" placeholder="Title" />
+          </div>
 
-        <div>
-          <input type="text" name="address" placeholder="Address" />
-        </div>
+          <div>
+            <input type="text" name="description" placeholder="Description" />
+          </div>
 
-        <div>
-          <input type="text" name="image_url" placeholder="Image Url" />
-        </div>
+          <div>
+            <input type="text" name="address" placeholder="Address" />
+          </div>
 
-        <input type="hidden" name="user_id" value="1" />
-        <input type="hidden" name="mapid" value="${mapid}" />
-        <input type="hidden" name="lat" value="${marker.position.lat()}" />
-        <input type="hidden" name="lng" value="${marker.position.lng()}" />
-        <div>
-          <button type="submit"><a href="/">Create<a></button>
-          <a id="login-form__cancel" href="/">Cancel</a>
-        </div>
-      </form>
-        `
-    });
+          <div>
+            <input type="text" name="image_url" placeholder="Image Url" />
+          </div>
+
+          <input type="hidden" name="user_id" value="1" />
+          <input type="hidden" name="mapid" value="${mapid}" />
+          <input type="hidden" name="lat" value="${marker.position.lat()}" />
+          <input type="hidden" name="lng" value="${marker.position.lng()}" />
+          <div>
+            <button type="submit"><a href="/">Create<a></button>
+            <a id="login-form__cancel" href="/">Cancel</a>
+          </div>
+        </form>
+          `
+      });
+    }
   }
 };
 
