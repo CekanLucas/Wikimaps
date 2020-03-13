@@ -46,19 +46,21 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
   if (existingMarker) {
     // console.log(existingMarker);
     return new google.maps.InfoWindow({
-      content: `<div id="content">
+      content: `<div id="content"
+      style='filter:invert(1) hue-rotate(243deg);'
+      >
         <div id="siteNotice">
-        </div>
+        </div style='text-shadow:none; color:#fff;'>
         <h1 id="firstHeading" class="firstHeading">${existingMarker.title}</h1>
-        <div id="bodyContent">
+        <div id="bodyContent" style='text-shadow:none; color:#fff;'>
         <div>
-        <p><b>${existingMarker.description}</b>
+        <p style='text-shadow:none; color:#fff;'><b>${existingMarker.description}</b>
         </div>
         <div>
-        <p> <b>${existingMarker.address}</b>
+        <p style='text-shadow:none; color:#fff;'> <b>${existingMarker.address}</b>
         </div>
         <div>
-        <img src='${existingMarker.image_url}'  style="height:100px;"
+        <img style='filter:invert(0);max-height:150px;' src='${existingMarker.image_url}'  style="height:100px;"
         style="width:100px;">
         </div>
         <div>
