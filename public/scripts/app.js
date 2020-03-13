@@ -30,16 +30,13 @@ $(document).ready(function() {
     // createHeader(users.users);
     createMapElement(users.users);
     if (getCookie("user_id")) {
-      console.log("hello");
-      console.log(users);
       for (let map of users.users) {
         if (map.user_id === Number(getCookie("user_id"))) {
-          console.log(map.name);
           const capitalName = map.name
             .split("")
             .map((el, i) => (i === 0 ? el.toUpperCase() : el))
             .join("");
-          console.log(capitalName);
+
           const html = `Welcome <span id="logged-name">${capitalName}   </span>`;
           $("#input-form input")
             .attr("name", "email")

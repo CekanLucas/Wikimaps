@@ -139,11 +139,12 @@ module.exports = db => {
   router.post("/", (req, res) => {
     console.log("GOT HERE");
     let data = req.body;
-    console.log(data);
-    let user_id = 1;
+    console.log("data: ", data);
+    let user_id = req.cookies["user_id"];
     let active = true;
     createNewMap(user_id, data.title, data.description, data.image_url, active);
-    // res.redirect("/");
+
+    res.redirect("/");
   });
 
   router.post("/markers", (req, res) => {
