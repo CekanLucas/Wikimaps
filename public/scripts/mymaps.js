@@ -59,8 +59,6 @@ $(document).ready(function() {
           };
           mapMaker(map.id, mapmarkers);
           let randHue = Math.random() * 360;
-          mapMaker(map.id);
-          //alter mapMaker function to renderpointers for each map
           $(`#${map.id}`).css(
             "filter",
             `invert(1) sepia(0.8) hue-rotate(${randHue}deg)`
