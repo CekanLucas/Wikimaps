@@ -13,7 +13,8 @@ module.exports = db => {
     db.query(
       `SELECT * FROM users
     JOIN maps on maps.user_id =users.id
-    ORDER BY maps.id DESC;`
+    ORDER BY maps.id DESC
+    LIMIT 5;`
     )
       .then(data => {
         const users = data.rows;
