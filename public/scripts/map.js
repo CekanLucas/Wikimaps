@@ -58,7 +58,7 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <p><b>${existingMarker.address}</b>
         </div>
         <div>
-        <p><b>${existingMarker.image_url}</b>
+        <img src='${existingMarker.image_url}'>
         </div>
         <div>
         ${
