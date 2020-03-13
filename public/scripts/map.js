@@ -106,7 +106,7 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <input type="hidden" name="lat" value="${marker.position.lat()}" />
         <input type="hidden" name="lng" value="${marker.position.lng()}" />
         <div>
-          <button type="submit" href="/">Create</button>
+          <button type="submit"><a href="/">Create<a></button>
           <a id="login-form__cancel" href="/">Cancel</a>
         </div>
       </form>
