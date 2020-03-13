@@ -3,9 +3,9 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   let gmarker = new google.maps.Marker({
     position: location,
     map: map,
-    draggable: true,
-    user_id: 1,
-    map_id: mapid
+    draggable: true
+    // user_id: userid,
+    // map_id: mapid
   });
 
   window.maps[mapid].markers.push({
@@ -132,27 +132,28 @@ $(document).on("submit", "#marker-form", function(evt) {
 
 // Initialize and add the map
 window.initMap = mapid => {
-  console.log(mapid);
-  console.log(document.getElementById(mapid));
+  // console.log(mapid);
+  // console.log(document.getElementById(mapid));
   mapMaker("map");
 };
 
 // helper function that generates user maps.
 // needs to be refactored to generate all maps connected to currently logged in user
 const mapMaker = function(mapid, mapmarkers) {
-  const lhl = { lat: 43.78432041175625, lng: -79.60479333058197 };
+  const lhl = { lat: 43.6442, lng: -79.4022 };
   let map = new google.maps.Map(document.getElementById(mapid), {
-    zoom: 9,
+    zoom: 14,
     center: lhl
   });
 
   if (mapmarkers) {
     for (let key in mapmarkers) {
-      // console.log(key);
+      console.log(key);
       // console.log(mapid);
       if (key == mapid) {
         for (let marker of mapmarkers[key]) {
-          // console.log(marker);
+          // console.log("marker: ", marker);
+          console.log("inside mapmajer: ", mapid);
           let lat = Number(marker.latitude);
           let lng = Number(marker.longitude);
           placeMarker({ lat, lng }, map, mapid, marker);

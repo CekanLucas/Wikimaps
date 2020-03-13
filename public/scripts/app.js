@@ -38,12 +38,16 @@ $(document).ready(function() {
           mapmarkers[map_id] = [marker];
         }
       }
-      for (let map of users.users) {
-        window.maps[map.id] = {
+      // console.log(response.markers);
+      for (let map of response.markers) {
+        console.log("map: ", map);
+        window.maps[map.map_id] = {
           user_id: map.user_id,
           markers: []
         };
-        mapMaker(map.id, mapmarkers);
+        console.log("mapid: ", map.map_id);
+        console.log("mapmarker:", mapmarkers);
+        mapMaker(map.map_id, mapmarkers);
       }
     });
 
