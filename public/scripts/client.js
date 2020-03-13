@@ -2,15 +2,22 @@ $(document).ready(() => {
   console.log("Form Ready");
   $(".nav-item").hide();
 
+  // getCookie = function(name) {
+  //   var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+  //   if (match) return match[2];
+  // };
+  // if (getCookie("user_id")) {
+
+  // }
+  // console.log("Cookie is: ", getCookie("user_id"));
+
   //create map handling
   // $('#map-form').toggle();
   $("#create-map-cancel").click(e => {
     e.preventDefault();
     $("#create-map-div").toggle();
   });
-  $("#create-map-submit").click(e => {
-    $("#create-map-div").toggle();
-  });
+
   $("#nav-create-map").click(e => {
     $("#create-map-div").toggle();
   });

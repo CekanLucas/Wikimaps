@@ -18,11 +18,46 @@ $(document).ready(function() {
     }
   };
 
+  getCookie = function(name) {
+    var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    if (match) return match[2];
+  };
+
   $.ajax({
     method: "GET",
     url: "/api/users"
   }).then(users => {
+    // createHeader(users.users);
     createMapElement(users.users);
+    if (getCookie("user_id")) {
+      console.log("hello");
+      console.log(users);
+      for (let map of users.users) {
+        if (map.user_id === Number(getCookie("user_id"))) {
+          console.log(map.name);
+          const capitalName = map.name
+            .split("")
+            .map((el, i) => (i === 0 ? el.toUpperCase() : el))
+            .join("");
+          console.log(capitalName);
+          const html = `Welcome <span id="logged-name">${capitalName}   </span>`;
+          $("#input-form input")
+            .attr("name", "email")
+            .attr("type", "email")
+            .attr("placeholder", "example@email.com")
+            .val("")
+            .hide(500);
+          $("#form-msg").html(html);
+          $("#login-button").hide(500);
+          $("#logout-button")
+            .text("Logout")
+            .show(500);
+          $("#register-button").hide(500);
+          $(".error-message").hide();
+          $(".nav-item").show(500);
+        }
+      }
+    }
     window.maps = {};
     window.mapmarkers = {};
 
@@ -40,13 +75,13 @@ $(document).ready(function() {
       }
       // console.log(response.markers);
       for (let map of response.markers) {
-        console.log("map: ", map);
+        // console.log("map: ", map);
         window.maps[map.map_id] = {
           user_id: map.user_id,
           markers: []
         };
-        console.log("mapid: ", map.map_id);
-        console.log("mapmarker:", mapmarkers);
+        // console.log("mapid: ", map.map_id);
+        // console.log("mapmarker:", mapmarkers);
         mapMaker(map.map_id, mapmarkers);
       }
     });

@@ -143,7 +143,7 @@ module.exports = db => {
     let user_id = 1;
     let active = true;
     createNewMap(user_id, data.title, data.description, data.image_url, active);
-    res.redirect("/");
+    // res.redirect("/");
   });
 
   router.post("/markers", (req, res) => {

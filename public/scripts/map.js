@@ -26,9 +26,9 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 };
 
-console.log("cookie name  ", document.cookie);
+// console.log("cookie name  ", document.cookie);
 const deleteMarkerData = marker_id => {
-  console.log("maker_id: ", marker_id);
+  // console.log("maker_id: ", marker_id);
   $.ajax({
     method: "POST",
     url: `/api/markers/delete/${marker_id}`
@@ -44,7 +44,7 @@ const deleteMarkerData = marker_id => {
 
 const renderMarkerPopover = (marker, existingMarker, mapid) => {
   if (existingMarker) {
-    console.log(existingMarker);
+    // console.log(existingMarker);
     return new google.maps.InfoWindow({
       content: `<div id="content">
         <div id="siteNotice">
@@ -126,7 +126,7 @@ $(document).on("submit", "#marker-form", function(evt) {
     method: "POST",
     data: markerData
   }).then(data => {
-    console.log(data);
+    // console.log(data);
   });
 });
 
@@ -148,12 +148,12 @@ const mapMaker = function(mapid, mapmarkers) {
 
   if (mapmarkers) {
     for (let key in mapmarkers) {
-      console.log(key);
+      // console.log(key);
       // console.log(mapid);
       if (key == mapid) {
         for (let marker of mapmarkers[key]) {
           // console.log("marker: ", marker);
-          console.log("inside mapmajer: ", mapid);
+          // console.log("inside mapmajer: ", mapid);
           let lat = Number(marker.latitude);
           let lng = Number(marker.longitude);
           placeMarker({ lat, lng }, map, mapid, marker);
