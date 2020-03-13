@@ -117,7 +117,7 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
 
 $(document).on("submit", "#marker-form", function(evt) {
   evt.preventDefault();
-
+  // console.log($(this));
   //put this in object
   let markerData = {
     title: $(this.title).val(),
@@ -134,7 +134,9 @@ $(document).on("submit", "#marker-form", function(evt) {
     url: "/api/maps/markers",
     method: "POST",
     data: markerData
-  }).then(data => {});
+  }).then(data => {
+    res.send(data);
+  });
 });
 
 // Initialize and add the map
