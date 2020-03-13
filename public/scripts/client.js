@@ -102,8 +102,8 @@ $(document).ready(() => {
       $(".nav-item").hide(500);
       $("#login-button").show(500);
       $("#logout-button")
-        .addClass("btn-dark")
-        .removeClass("btn-warning");
+        .addClass("btn-warning")
+        .removeClass("btn-dark");
       return;
     });
   });
