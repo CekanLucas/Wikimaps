@@ -90,6 +90,7 @@ $(document).ready(() => {
       $("#form-msg").text("Enter Email:  ");
       $("#register-button").show(500);
       $(".nav-item").hide(500);
+      $("#login-button").hide(500);
       return;
     });
   });

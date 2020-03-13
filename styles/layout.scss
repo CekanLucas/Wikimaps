@@ -56,10 +56,12 @@ nav input,
     font-weight: 700;
     font-size: 1.5em;
     padding-left: 3rem;
+    text-shadow: -1px -1px 0px aqua, 3px 3px 0px aqua, 6px 6px 0px aqua;
   }
   span.user-handle {
     margin: 1.5em 0;
     padding-left: 5rem;
+    text-shadow: -1px -1px 0px aqua, 3px 3px 0px aqua, 6px 6px 0px aqua;
   }
   .map-item,
   .map-item > div {
@@ -80,6 +82,12 @@ nav input,
     padding: 0 6.5vh;
     color: #000;
     margin-bottom: 0.5em;
+  }
+  a[title = 'Add pins from Map'],
+  a[title = 'Delete Map'],
+  a[title = 'Remove Pins from Map'],
+  a[title = 'Edit Map']  {
+    display: none;
   }
 }
 .map-grid *:hover {
