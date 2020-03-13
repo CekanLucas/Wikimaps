@@ -128,6 +128,7 @@ $(document).ready(() => {
           $("#register-button").hide(500);
           $(".error-message").hide();
           $(".nav-item").show(500);
+          window.location.reload();
           return "";
         }
         return;
@@ -162,6 +163,7 @@ $(document).ready(() => {
       $("#logout-button")
         .addClass("btn-warning")
         .removeClass("btn-dark");
+      window.location.reload();
       return;
     });
   });
