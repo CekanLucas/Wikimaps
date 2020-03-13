@@ -54,13 +54,19 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <h1 id="firstHeading" class="firstHeading">${existingMarker.title}</h1>
         <div id="bodyContent" style='text-shadow:none; color:#fff;'>
         <div>
-        <p style='text-shadow:none; color:#fff;'><b>${existingMarker.description}</b>
+        <p style='text-shadow:none; color:#fff;'><b>${
+          existingMarker.description
+        }</b>
         </div>
         <div>
-        <p style='text-shadow:none; color:#fff;'> <b>${existingMarker.address}</b>
+        <p style='text-shadow:none; color:#fff;'> <b>${
+          existingMarker.address
+        }</b>
         </div>
         <div>
-        <img style='filter:invert(0);max-height:150px;' src='${existingMarker.image_url}'  style="height:100px;"
+        <img style='filter:invert(0);max-height:150px;' src='${
+          existingMarker.image_url
+        }'  style="height:100px;"
         style="width:100px;">
         </div>
         <div>
@@ -100,7 +106,7 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
         <input type="hidden" name="lat" value="${marker.position.lat()}" />
         <input type="hidden" name="lng" value="${marker.position.lng()}" />
         <div>
-          <button type="submit" href="/api/maps/markers">Create</button>
+          <button type="submit" href="/">Create</button>
           <a id="login-form__cancel" href="/">Cancel</a>
         </div>
       </form>
@@ -128,9 +134,7 @@ $(document).on("submit", "#marker-form", function(evt) {
     url: "/api/maps/markers",
     method: "POST",
     data: markerData
-  }).then(data => {
-    // console.log(data);
-  });
+  }).then(data => {});
 });
 
 // Initialize and add the map
