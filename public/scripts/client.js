@@ -57,20 +57,8 @@ $(document).ready(() => {
       hue -= 5;
       $(".map-item, .map-item > div").css("filter", `none`);
     }
-
-    console.log(e);
   });
-  // getCookie = function(name) {
-  //   var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  //   if (match) return match[2];
-  // };
-  // if (getCookie("user_id")) {
 
-  // }
-  // console.log("Cookie is: ", getCookie("user_id"));
-
-  //create map handling
-  // $('#map-form').toggle();
   $("#create-map-cancel").click(e => {
     e.preventDefault();
     $("#create-map-div").toggle();
@@ -176,21 +164,3 @@ $(document).ready(() => {
     .css("z-index", -1000)
     .css("filter", "invert(1) blur(1.1px)");
 });
-
-// ----- NOTES FOR LUCAS
-//     $('#input-form').html()
-// "
-//         <input class=\"form-control\" name=\"login-email\" type=\"email\" placeholder=\"example@email.com\">
-//       "
-// $('#input-form input').val()
-// "cekancelucas@gmail.com"
-// $('#input-form input').before('<i>Hello<i>')
-// Object { 0: input.form-control
-// , length: 1, prevObject: {…} }
-
-// $('#input-form').before('<i>Hello<i>')
-// Object { 0: form#input-form.form-control.form-control-lg.form-inline, length: 1 }
-/*
-  <input type="color" id="head" name="head"
-             value="#e66465"></input> */
-// https://developers.google.com/maps/documentation/javascript/styling
