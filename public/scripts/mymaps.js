@@ -1,10 +1,7 @@
 $(document).ready(function() {
-  console.log("ready!");
-
   const createUserMapElement = function(users, userid) {
     $("#map-container").empty();
     for (let map of users) {
-      console.log("map: ", map);
       if (map.user_id === userid || true) {
         $("#map-container").append(`
           <article class=map-grid>
@@ -31,8 +28,6 @@ $(document).ready(function() {
       method: "GET",
       url: "/api/favourites"
     }).then(users => {
-      // console.log("users before create map element:", users.maps);
-      // createUserMapElement(users.maps, getCookie("user_id"));
       createUserMapElement(users.maps, Number(getCookie("user_id")));
       window.maps = {};
 
@@ -51,8 +46,6 @@ $(document).ready(function() {
         }
 
         for (let map of users.maps) {
-          console.log("users:", users.maps);
-          console.log("map: ", map);
           window.maps[map.id] = {
             user_id: map.user_id,
             markers: []

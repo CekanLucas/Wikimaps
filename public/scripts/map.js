@@ -4,8 +4,6 @@ const placeMarker = function(location, map, mapid, existingMarker) {
     position: location,
     map: map,
     draggable: true
-    // user_id: userid,
-    // map_id: mapid
   });
 
   window.maps[mapid].markers.push({
@@ -26,20 +24,11 @@ const placeMarker = function(location, map, mapid, existingMarker) {
   });
 };
 
-// console.log("cookie name  ", document.cookie);
 const deleteMarkerData = marker_id => {
-  // console.log("maker_id: ", marker_id);
   $.ajax({
     method: "POST",
     url: `/api/markers/delete/${marker_id}`
   });
-
-  // const editMarkerData = marker_id => {
-  //   console.log("maker_id: ", marker_id);
-  //   $.ajax({
-  //     method: "POST",
-  //     url: `/api/markers/edit/${marker_id}`
-  //   });
 };
 
 const renderMarkerPopover = (marker, existingMarker, mapid) => {
@@ -48,7 +37,6 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
     if (match) return match[2];
   };
   if (existingMarker) {
-    // console.log(existingMarker);
     return new google.maps.InfoWindow({
       content: `<div id="content"
       style='filter:invert(1) hue-rotate(243deg);'
@@ -124,8 +112,6 @@ const renderMarkerPopover = (marker, existingMarker, mapid) => {
 
 $(document).on("submit", "#marker-form", function(evt) {
   evt.preventDefault();
-  // console.log($(this));
-  //put this in object
   let markerData = {
     title: $(this.title).val(),
     description: $(this.description).val(),
@@ -148,8 +134,6 @@ $(document).on("submit", "#marker-form", function(evt) {
 
 // Initialize and add the map
 window.initMap = mapid => {
-  // console.log(mapid);
-  // console.log(document.getElementById(mapid));
   mapMaker("map");
 };
 
@@ -164,12 +148,8 @@ const mapMaker = function(mapid, mapmarkers) {
 
   if (mapmarkers) {
     for (let key in mapmarkers) {
-      // console.log(key);
-      // console.log(mapid);
       if (key == mapid) {
         for (let marker of mapmarkers[key]) {
-          // console.log("marker: ", marker);
-          // console.log("inside mapmajer: ", mapid);
           let lat = Number(marker.latitude);
           let lng = Number(marker.longitude);
           placeMarker({ lat, lng }, map, mapid, marker);
@@ -179,11 +159,8 @@ const mapMaker = function(mapid, mapmarkers) {
   }
 
   // create a loop using all the markers and place marker
-  // placeMarker(lhl, map, mapid);
   // on click map event handler
   google.maps.event.addListener(map, "click", function(event) {
-    console.log("click detected");
-    //console.log(event.latLng);
     if (document.cookie) {
       placeMarker(event.latLng, map, mapid);
     }

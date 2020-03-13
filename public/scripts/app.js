@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  console.log("ready!");
-
   const createMapElement = function(users) {
     for (let map of users) {
       $("#map-container").append(`
@@ -27,7 +25,6 @@ $(document).ready(function() {
     method: "GET",
     url: "/api/users"
   }).then(users => {
-    // createHeader(users.users);
     createMapElement(users.users);
     if (getCookie("user_id")) {
       for (let map of users.users) {
@@ -70,15 +67,11 @@ $(document).ready(function() {
           mapmarkers[map_id] = [marker];
         }
       }
-      // console.log(response.markers);
       for (let map of response.markers) {
-        // console.log("map: ", map);
         window.maps[map.map_id] = {
           user_id: map.user_id,
           markers: []
         };
-        // console.log("mapid: ", map.map_id);
-        // console.log("mapmarker:", mapmarkers);
         mapMaker(map.map_id, mapmarkers);
       }
     });
@@ -90,7 +83,6 @@ $(document).ready(function() {
       };
       let randHue = Math.random() * 360;
       mapMaker(map.id, mapmarkers);
-      //alter mapMaker function to renderpointers for each map
       $(`#${map.id}`).css(
         "filter",
         `invert(1) sepia(0.8) hue-rotate(${randHue}deg)`

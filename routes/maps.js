@@ -18,7 +18,6 @@ module.exports = db => {
     latitude,
     longitude
   ) {
-    // 1
     const queryParams = [
       user_id,
       map_id,
@@ -29,37 +28,23 @@ module.exports = db => {
       latitude,
       longitude
     ];
-    // 2
     let queryString = ` INSERT INTO pointers (user_id, map_id, title, description, image_url, address, latitude, longitude) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) `;
-    //5
-    console.log(queryString, queryParams);
-    // 6
+
     return db.query(queryString, queryParams).then(res => res.rows[0]);
   };
 
   router.get("/", (req, res) => {
     const getAllMaps = function(limit) {
-      // 1
-      console.log("called");
       const queryParams = [];
-      // 2
+
       let queryString = `
           SELECT * FROM maps
           `;
 
-      // if (options.user_id) {
-      //   queryParams.push(options.user_id);
-      //   queryString += `AND user_id = $${queryParams.length} `;
-      // }
-
-      // 4
       queryParams.push(limit);
       queryString += `
         LIMIT $${queryParams.length};
         `;
-      //5
-      console.log(queryString, queryParams);
-      // 6
       return db.query(queryString, queryParams).then(res => res.rows);
     };
 
@@ -80,8 +65,6 @@ module.exports = db => {
   });
 
   router.get("/user", (req, res) => {
-    console.log("hello world");
-
     const getMapsByEmail = function(email, limit) {
       const queryParams = [];
       // 2
@@ -96,17 +79,13 @@ module.exports = db => {
         queryString += `AND user_id = $${queryParams.length} `;
       }
 
-      // 4
       queryParams.push(limit);
       queryString += `
         LIMIT $${queryParams.length};
         `;
-      //5
-      console.log(queryString, queryParams);
-      // 6
+
       return db.query(queryString, queryParams).then(res => res.rows);
     };
-    console.log("cookie is: ", req.cookies["user_id"]);
     getMapsByEmail(Number(req.cookies["user_id"]), 10)
       .then(maps => {
         res.send({ maps }).catch(err => {
@@ -131,15 +110,12 @@ module.exports = db => {
     // 2
     let queryString = ` INSERT INTO maps (user_id, title, description, image_url, active) VALUES ($1,$2,$3,$4,$5) `;
     //5
-    console.log(queryString, queryParams);
     // 6
     return db.query(queryString, queryParams).then(res => res.rows[0]);
   };
 
   router.post("/", (req, res) => {
-    console.log("GOT HERE");
     let data = req.body;
-    console.log("data: ", data);
     let user_id = req.cookies["user_id"];
     let active = true;
     createNewMap(user_id, data.title, data.description, data.image_url, active);
@@ -148,9 +124,7 @@ module.exports = db => {
   });
 
   router.post("/markers", (req, res) => {
-    console.log("GOT HERE");
     let data = req.body;
-    console.log(data);
     createNewMarker(
       data.user_id,
       data.map_id,
