@@ -2,6 +2,61 @@ $(document).ready(() => {
   console.log("Form Ready");
   $(".nav-item").hide();
 
+
+
+  let hue =122;
+  let contrast = 2.4;
+  let sepia = 0;
+  let invert = 0.7
+  $(document).keypress( e => {
+
+      let filter=`invert(${invert}) hue-rotate(${hue}deg) contrast(${contrast}) sepia(${sepia}%)`
+    if(e.key === '`'){
+      hue =122;
+      contrast = 2.4;
+      sepia = 0;
+      invert = 0.7
+        $('.map-item, .map-item > div').css('filter', filter)
+    }
+    if(e.key === '0'){
+      invert = 0
+      $('.map-item, .map-item > div').css('filter', filter)
+    }
+
+    if(e.key === '1'){
+      hue += 5;
+      $('.map-item, .map-item > div').css('filter', filter)
+    }
+
+    if(e.key === '2'){
+      contrast += 0.2;
+      $('.map-item, .map-item > div').css('filter', filter)
+    }
+    if(e.key === '3'){
+      contrast -= 0.2;
+      $('.map-item, .map-item > div').css('filter', filter)
+    }
+    if(e.key === '4'){
+      contrast += 10;
+      $('.map-item, .map-item > div').css('filter', filter)
+    }
+    if(e.key === '5'){
+      sepia -= 10;
+      $('.map-item, .map-item > div').css('filter', `invert(0.7) hue-rotate(${hue}deg) contrast(${contrast})`);
+    }
+
+    if(e.key === '9'){
+      hue -= 5;
+      $('.map-item, .map-item > div').css('filter', `invert(0.7) hue-rotate(${hue}deg) contrast(2.4)`)
+    }
+
+    if(e.key === '-'){
+      hue -= 5;
+      $('.map-item, .map-item > div').css('filter', `none`)
+    }
+
+    console.log(e)
+  })
   // getCookie = function(name) {
   //   var match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
   //   if (match) return match[2];
